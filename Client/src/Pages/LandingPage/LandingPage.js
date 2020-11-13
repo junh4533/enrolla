@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
+import "./LandingPage.scss";
 
 const LandingPage = () => {
   const [firstName, setFirstName] = useState("");
@@ -33,23 +34,10 @@ const LandingPage = () => {
   //   });
   // }, []);
   return (
-    <div>
-      <h1>LandingPage</h1>
-      {/* <h3>Search for student email based on first name</h3> */}
-      <div className="form">
-        <label>Search for student email based on first name</label> <br />
-        <input
-          type="text"
-          name="firstName"
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
-        <button onClick={TestQuery}>Submit</button>
-        {studentTable.map((key) => {
-          return <p>{key.Email}</p>;
-        })}
-      </div>
+    <div className="landing-page">
+      {/* ***********START CODING HERE***********  */}
+      <h1>Landing Page</h1>
+      {/* ***********stop CODING HERE***********  */}
     </div>
   );
 };

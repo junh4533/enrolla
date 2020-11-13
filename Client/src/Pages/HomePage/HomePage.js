@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import "./HomePage.scss";
 
-class HomePage extends Component {
-  render() {
-    return <div>HomePage</div>;
-  }
-}
+const HomePage = () => {
+  return (
+    <div className="home-page">
+      {/* ***********START CODING HERE***********  */}
+      <h1>Home Page</h1>
+      {/* ***********stop CODING HERE***********  */}
+    </div>
+  );
+};
 
 export default HomePage;

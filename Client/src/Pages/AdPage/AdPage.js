@@ -1,14 +1,14 @@
 import React from "react";
-import "./Footer.scss";
+import "./AdPage.scss";
 
-const Footer = () => {
+const AdPage = () => {
   return (
-    <div className="footer">
+    <div className="ad-page">
       {/* ***********START CODING HERE***********  */}
-
+      <h1>Ad Page</h1>
       {/* ***********stop CODING HERE***********  */}
     </div>
   );
 };
 
-export default Footer;
+export default AdPage;

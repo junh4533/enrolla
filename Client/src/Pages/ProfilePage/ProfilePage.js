@@ -1,14 +1,14 @@
 import React from "react";
-import "./Footer.scss";
+import "./ProfilePage.scss";
 
-const Footer = () => {
+const ProfilePage = () => {
   return (
-    <div className="footer">
+    <div className="profile-page">
       {/* ***********START CODING HERE***********  */}
-
+      <h1>Profile Page</h1>
       {/* ***********stop CODING HERE***********  */}
     </div>
   );
 };
 
-export default Footer;
+export default ProfilePage;

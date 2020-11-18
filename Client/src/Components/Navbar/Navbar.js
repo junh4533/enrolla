@@ -27,6 +27,9 @@ const Navbar = () => {
           <Link to="/preferences">
             <li className="nav-item">Preferences</li>
           </Link>
+          <Link to="/sqltest">
+            <li className="nav-item">SQL Test</li>
+          </Link>
         </ul>
       </nav>
       {/* ***********stop CODING HERE***********  */}

@@ -14,7 +14,6 @@ const LandingPage = () => {
   // };
 
   const TestQuery = () => {
-    console.log(firstName);
     Axios.post("http://localhost:3001/api/query", {
       firstName: firstName,
     })

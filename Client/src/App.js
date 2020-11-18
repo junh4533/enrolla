@@ -10,6 +10,7 @@ import Preferences from "./Pages/Preferences";
 import ProfilePage from "./Pages/ProfilePage";
 import SchedulePage from "./Pages/SchedulePage";
 import AdPage from "./Pages/AdPage";
+import SqlTest from "./Pages/SqlTest";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/preferences" component={Preferences} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/schedule" component={SchedulePage} />
+        <Route path="/sqltest" component={SqlTest} />
         <Route path="/ad" component={AdPage} />
         <Footer />
       </div>

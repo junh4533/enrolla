@@ -15,77 +15,63 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const runQuery = (res, query, ...args) => {
+  db.query(query, [...args], (err, result) => {
+    res.send(result);
+    if (result) {
+      result.length > 0 ? console.log(result) : console.log("NO QUERY RESULTS");
+    } else {
+      console.log(err);
+    }
+  });
+};
+
 app.post("/api/query", (req, res) => {
   // Query for student email using search box
   const firstName = req.body.firstName;
   const fname = "First_Name";
   const sql = "SELECT * from student WHERE " + fname + "= ?";
-  db.query(sql, firstName, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  runQuery(res, sql, firstName);
 });
 
 app.post("/api/query/test", (req, res) => {
   // TEST QUERY
   // const testQuery = "SELECT minor from student WHERE First_Name = 'Jun'";
   const testQuery = "UPDATE student SET minor = 'acc' WHERE First_Name = 'Jun'";
-  db.query(testQuery, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  runQuery(res, testQuery);
 });
 
 // Query for user registration
 app.post("/api/query/registration", (req, res) => {
   const registrationQuery = "";
-  db.query(registrationQuery, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  runQuery(res, registrationQuery);
 });
 
 // Query for login authentication
 app.post("/api/query/login", (req, res) => {
-  const loginQuery = "";
-  db.query(loginQuery, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  const username = req.body.username;
+  const password = req.body.password;
+  const loginQuery =
+    "SELECT Username, Password FROM enrolla_app.credentials WHERE Username = ? AND Password = ?";
+  runQuery(res, loginQuery, username, password);
 });
 
 // Query for student info page
 app.post("/api/query/studentInfo", (req, res) => {
   const studentInfoQuery = "";
-  db.query(studentInfoQuery, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  runQuery(res, studentInfoQuery);
 });
 
 // Query for student schedule preferences
 app.post("/api/query/schedule", (req, res) => {
   const schedulePreferenceQuery = "";
-  db.query(schedulePreferenceQuery, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  runQuery(res, schedulePreferenceQuery);
 });
 
 // Query for student profile
 app.post("/api/query/profile", (req, res) => {
   const profileQuery = "";
-  db.query(profileQuery, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.send(result);
-  });
+  runQuery(res, profileQuery);
 });
 
 app.listen(3001, () => {

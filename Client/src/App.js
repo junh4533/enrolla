@@ -5,7 +5,8 @@ import "./App.scss";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import LandingPage from "./Pages/LandingPage";
-import HomePage from "./Pages/HomePage";
+import RegisterPage from "./Pages/RegisterPage";
+import LoginPage from "./Pages/LoginPage";
 import Preferences from "./Pages/Preferences";
 import ProfilePage from "./Pages/ProfilePage";
 import SchedulePage from "./Pages/SchedulePage";
@@ -18,7 +19,8 @@ function App() {
       <div className="App">
         <Navbar />
         <Route path="/" exact component={LandingPage} />
-        <Route path="/home" component={HomePage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/login" component={LoginPage} />
         <Route path="/preferences" component={Preferences} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/schedule" component={SchedulePage} />

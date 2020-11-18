@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
+import RegisteredLinks from "./RegisteredLinks";
+import UnRegisteredLinks from "./UnRegisteredLinks";
 
 const Navbar = () => {
   return (
@@ -10,13 +12,15 @@ const Navbar = () => {
         <a className="navbar-brand" href="#">
           Logo
         </a>
-
         <ul className="navbar-nav">
           <Link to="/">
             <li className="nav-item">Landing</li>
           </Link>
-          <Link to="/home">
-            <li className="nav-item">Home</li>
+          <Link to="/register">
+            <li className="nav-item">Register</li>
+          </Link>
+          <Link to="/login">
+            <li className="nav-item">Login</li>
           </Link>
           <Link to="/profile">
             <li className="nav-item">Profile</li>

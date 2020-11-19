@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
+import Cookies from "js-cookie";
 import "./LoginPage.scss";
 
 const LoginPage = () => {
@@ -14,12 +15,20 @@ const LoginPage = () => {
       .then((response) => {
         // console.log(response.data);
         // console.log(credentialsTable);
+        // console.log(document.cookie);
+        Cookies.set("user", "true");
         setCredentialsTable(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  // set cookies if authentication query returns a matching result
+  credentialsTable.length > 0
+    ? Cookies.set("user", username)
+    : Cookies.set("user", "invalid");
+
   return (
     <div className="login-page">
       {/* ***********START CODING HERE***********  */}
@@ -54,7 +63,7 @@ const LoginPage = () => {
           Submit
         </button>
         {/* </form> */}
-        {credentialsTable.length > 0 ? (
+        {Cookies.get("user") != "invalid" ? (
           <h3 className="text-success">Authenticated</h3>
         ) : (
           <h3 className="text-danger">NOT Authenticated</h3>

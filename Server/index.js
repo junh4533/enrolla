@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const mysql = require("mysql2");
+const cookieParser = require("cookie-parser");
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -14,6 +15,7 @@ const db = mysql.createConnection({
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const runQuery = (res, query, ...args) => {
   db.query(query, [...args], (err, result) => {

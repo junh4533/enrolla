@@ -38,8 +38,9 @@ app.post("/api/query", (req, res) => {
 
 app.post("/api/query/test", (req, res) => {
   // TEST QUERY
-  // const testQuery = "SELECT minor from student WHERE First_Name = 'Jun'";
-  const testQuery = "UPDATE student SET minor = 'acc' WHERE First_Name = 'Jun'";
+  // const testQuery =
+  "select student.Student_ID,`student availability`.Monday,`student availability`.Tuesday,`student availability`.Wednesday,`student availability`.Thursday,`student availability`.Friday,`student availability`.Saturday,`student availability`.Sunday from `student availability` inner join student on student.`student availbility_Student_Availbility_ID`=Student_Availbility_ID";
+  // const testQuery = "UPDATE student SET minor = 'ART' WHERE First_Name = 'Jun'";
   runQuery(res, testQuery);
 });
 
@@ -62,12 +63,6 @@ app.post("/api/query/login", (req, res) => {
 app.post("/api/query/studentInfo", (req, res) => {
   const studentInfoQuery = "";
   runQuery(res, studentInfoQuery);
-});
-
-// Query for student schedule preferences
-app.post("/api/query/schedule", (req, res) => {
-  const schedulePreferenceQuery = "";
-  runQuery(res, schedulePreferenceQuery);
 });
 
 // Query for student profile

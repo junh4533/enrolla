@@ -1,16 +1,12 @@
 import React from "react";
-import "./Preferences.scss";
 
-const Preferences = () => {
+const StudentInfoPage = () => {
   return (
-    <div className="preferences-page">
-      {/* ***********START CODING HERE***********  */}
-      <h1>Preferences Page</h1>
+    <div className="student-info-page">
+      <h1>StudentInfoPage</h1>
       <div className="container">
         <div className="form-group">
-          <label>
-            Select all the courses you’d like to take for the semester:
-          </label>
+          <label>Major:</label>
           <select id="major" name="major" multiple>
             <option value="CIS">Computer Information Systems</option>
             <option value="PAF">Public Affairs</option>
@@ -37,9 +33,8 @@ const Preferences = () => {
           Submit
         </button>
       </div>
-      {/* ***********stop CODING HERE***********  */}
     </div>
   );
 };
 
-export default Preferences;
+export default StudentInfoPage;

@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
 
 const StudentInfoPage = () => {
-  const [courseList, setCourseList] = useState("");
+  const [courseList, setCourseList] = useState([]);
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/query/course-list")
@@ -14,6 +14,17 @@ const StudentInfoPage = () => {
         console.log(error);
       });
   }, []);
+
+  // Axios.get("http://localhost:3001/api/query/course-list")
+  //   .then((response) => {
+  //     setCourseList(response.data);
+  //     console.log(response.data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  // console.log();
 
   return (
     <div className="student-info-page">

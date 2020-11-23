@@ -102,6 +102,34 @@ const Preferences = () => {
             </div>
           </label>
         </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Saturday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Sunday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

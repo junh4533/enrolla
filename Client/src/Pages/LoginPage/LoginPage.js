@@ -6,28 +6,23 @@ import "./LoginPage.scss";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [credentialsTable, setCredentialsTable] = useState([]);
   const LoginQuery = () => {
     Axios.post("http://localhost:3001/api/query/login", {
       username: username,
       password: password,
     })
       .then((response) => {
-        // console.log(response.data);
-        // console.log(credentialsTable);
-        // console.log(document.cookie);
-        Cookies.set("user", "true");
-        setCredentialsTable(response.data);
+        if (response.data == "INVALID LOGIN") {
+          Cookies.set("user", "invalid");
+        } else {
+          Cookies.set("user", username);
+          window.location = "/student-info";
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  // set cookies if authentication query returns a matching result
-  credentialsTable.length > 0
-    ? Cookies.set("user", username)
-    : Cookies.set("user", "invalid");
 
   return (
     <div className="login-page">

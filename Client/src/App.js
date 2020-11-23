@@ -12,6 +12,7 @@ import Preferences from "./Pages/Preferences";
 import ProfilePage from "./Pages/ProfilePage";
 import AdPage from "./Pages/AdPage";
 import SqlTest from "./Pages/SqlTest";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
@@ -21,11 +22,11 @@ function App() {
         <Route path="/" exact component={LandingPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/student-info" component={StudentInfo} />
-        <Route path="/preferences" component={Preferences} />
-        <Route path="/profile" component={ProfilePage} />
-        <Route path="/sqltest" component={SqlTest} />
-        <Route path="/ad" component={AdPage} />
+        <ProtectedRoute path="/student-info" component={StudentInfo} />
+        <ProtectedRoute path="/preferences" component={Preferences} />
+        <ProtectedRoute path="/profile" component={ProfilePage} />
+        <ProtectedRoute path="/sqltest" component={SqlTest} />
+        <ProtectedRoute path="/ad" component={AdPage} />
         <Footer />
       </div>
     </Router>

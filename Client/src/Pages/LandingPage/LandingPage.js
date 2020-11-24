@@ -6,7 +6,6 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       {/* ***********START CODING HERE***********  */}
-      <h1>Landing Page</h1>
       <div class="container-fluid bg-1 text-center">
         <h1 class="margin1">
           Worry less about planning for school with Enrolla.

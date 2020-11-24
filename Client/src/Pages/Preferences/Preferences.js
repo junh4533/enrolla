@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component, useState, useEffect } from "react";
+import Axios from "axios";
+import Cookies from "js-cookie";
 import "./Preferences.scss";
-
 const Preferences = () => {
   return (
     <div className="preferences-page">
@@ -18,20 +19,114 @@ const Preferences = () => {
           </select>
         </div>
         <div className="form-group">
-          <label>Minor:</label>
-          <select id="minor" name="minor" multiple>
-            <option value="ART">Art</option>
-            <option value="THE">Theater</option>
-          </select>
+          <label>How many credits do you have?</label>
+          <input
+            type="number"
+            className="form-control"
+            id="credits"
+            name="credits"
+            // onChange={(e) => {
+            //   setPassword(e.target.value);
+            // }}
+          />
         </div>
-        <div className="form-group">
-          <label>Courses Taken:</label>
-          <select id="courses" name="courses" multiple>
-            <option value="CIS2300">CIS 2300</option>
-            <option value="CIS3100">CIS 3100</option>
-            <option value="CIS3400">CIS 3400</option>
-            <option value="CIS5800">CIS 5800</option>
-          </select>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Mondays
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Tuesday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Wednesday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Thursday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Friday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Saturday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="" />
+            Sunday
+            <div class="form-group">
+              <label for="usr">From:</label>
+              <input type="time" name="appt" />
+            </div>
+            <div class="form-group">
+              <label for="usr">To:</label>
+              <input type="time" name="appt" />
+            </div>
+          </label>
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
@@ -41,5 +136,4 @@ const Preferences = () => {
     </div>
   );
 };
-
 export default Preferences;

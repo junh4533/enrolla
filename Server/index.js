@@ -29,6 +29,10 @@ const runQuery = (res, query, ...args) => {
   console.log(sql.sql);
 };
 
+app.get("/api/query/test", (req, res) => {
+  console.log(req.cookies);
+});
+
 app.post("/api/query/test", (req, res) => {
   // TEST QUERY
   const testQuery =
@@ -88,12 +92,10 @@ app.post("/api/query/login", (req, res) => {
   console.log(sql.sql);
 });
 
-// Query for student info page
+// Query for course-list
 app.get("/api/query/course-list", (req, res) => {
-  const studentInfoQuery = "SELECT Course_Name FROM courses";
-  runQuery(res, studentInfoQuery);
-
-  const sql = db.query(studentInfoQuery, (err, result) => {
+  const courseListQuery = "SELECT Course_Name FROM courses";
+  const sql = db.query(courseListQuery, (err, result) => {
     if (result) {
       res.send(result);
     } else {
@@ -101,6 +103,34 @@ app.get("/api/query/course-list", (req, res) => {
     }
   });
   console.log(sql.sql);
+});
+
+// Query for student info page
+app.post("/api/query/student-info", (req, res) => {
+  const major = req.body.major,
+    minor = req.body.minor,
+    coursesTaken = req.body.coursesTaken.map((d) => `"${d}"`).join(","),
+    username = req.body.username,
+    studentInfoQuery =
+      "UPDATE student SET major_Major_ID = (SELECT Major_ID FROM major WHERE major_name = ?), minor = ? WHERE credentials_Credentials_ID = (SELECT Credentials_ID FROM credentials WHERE Username = ?)",
+    transcriptQuery =
+      "INSERT INTO transcript (`Taken Classes`) VALUES ('[" +
+      coursesTaken +
+      "]')",
+    studentTranscriptQuery =
+      "UPDATE student SET transcript_Transcript_ID = (SELECT MAX(Transcript_ID) FROM transcript) WHERE credentials_Credentials_ID = (SELECT Credentials_ID FROM credentials WHERE Username = ?)";
+
+  const updateStudentInfo = runQuery(
+      res,
+      studentInfoQuery,
+      major,
+      minor,
+      username
+    ),
+    updateTranscript = runQuery(res, transcriptQuery, coursesTaken),
+    updateStudentTranscript = runQuery(res, studentTranscriptQuery, username);
+  Promise.all([updateStudentInfo, updateTranscript, updateStudentTranscript]);
+  res.send("Query Complete");
 });
 
 // Query for student profile

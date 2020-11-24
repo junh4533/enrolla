@@ -1,13 +1,13 @@
 import React, { Component, useState, useEffect } from "react";
-import Axios from "axios";
+// import Axios from "axios";
 import "./LandingPage.scss";
 
 const LandingPage = () => {
   return (
     <div className="landing-page">
       {/* ***********START CODING HERE***********  */}
-      <div class="container-fluid bg-1 text-center">
-        <h1 class="margin1">
+      <div className="container-fluid bg-1 text-center">
+        <h1 className="margin1">
           Worry less about planning for school with Enrolla.
         </h1>
         <h4>
@@ -15,14 +15,14 @@ const LandingPage = () => {
           your personal time constraints, subject preferences, and graduation
           requirements.
         </h4>
-        <a href="#" class="button">
+        <a href="#" className="button">
           Sign Up Now
         </a>
       </div>
 
-      <div class="container-fluid bg-2 text-center">
-        <h3 class="margin2 lavendar">Benefits</h3>
-        <div class="rectangle margin2"></div>
+      <div className="container-fluid bg-2 text-center">
+        <h3 className="margin2 lavendar">Benefits</h3>
+        <div className="rectangle margin2"></div>
         <p>🗸 Keeps you on track for graduation</p>
         <p>🗸 Make your life easier as a college student</p>
         <p>🗸 Remove the pains of planning for next semester</p>

@@ -3,20 +3,48 @@ import Axios from "axios";
 import Cookies from "js-cookie";
 import "./Preferences.scss";
 const Preferences = () => {
+  const [courseList, setCourseList] = useState([]);
+  const [coursesToTake, setCoursesToTake] = useState([]);
+  useEffect(() => {
+    Axios.get("http://localhost:3001/api/query/course-list")
+      .then((response) => {
+        setCourseList(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="preferences-page">
       {/* ***********START CODING HERE***********  */}
       <h1>Preferences Page</h1>
       <div className="container">
         <div className="form-group">
-          <label>
-            Select all the courses you’d like to take for the semester:
-          </label>
-          <select id="major" name="major" multiple>
-            <option value="CIS">Computer Information Systems</option>
-            <option value="PAF">Public Affairs</option>
-            <option value="ECO">Economics</option>
-          </select>
+          <div className="input-group mb-3">
+            <label className="d-block">Courses You Would Like to Take:</label>
+            <br />
+            <select
+              className="custom-select"
+              id="courses"
+              name="courses"
+              multiple
+              onChange={(e) => {
+                const values = [...e.target.selectedOptions].map((opt) =>
+                  String(opt.value)
+                );
+                setCoursesToTake(values);
+                console.log(values);
+              }}
+            >
+              {courseList.map((val) => {
+                return (
+                  <option value={val.Course_Name}>{val.Course_Name}</option>
+                );
+              })}
+            </select>
+          </div>
         </div>
         <div className="form-group">
           <label>How many credits do you have?</label>
@@ -30,99 +58,99 @@ const Preferences = () => {
             // }}
           />
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Mondays
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>
           </label>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Tuesday
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>
           </label>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Wednesday
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>
           </label>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Thursday
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>
           </label>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Friday
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>
           </label>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Saturday
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>
           </label>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="" />
+        <div className="form-check">
+          <label className="form-check-label">
+            <input type="checkbox" className="form-check-input" value="" />
             Sunday
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label for="usr">To:</label>
               <input type="time" name="appt" />
             </div>

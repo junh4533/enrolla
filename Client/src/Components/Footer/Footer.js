@@ -5,6 +5,8 @@ const Footer = () => {
   return (
     <div className="footer">
       {/* ***********START CODING HERE***********  */}
+      <div>Copyright © Enrolla 2020
+      </div>      
 
       {/* ***********stop CODING HERE***********  */}
     </div>

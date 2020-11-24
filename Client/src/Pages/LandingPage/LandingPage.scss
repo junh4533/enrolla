@@ -1,5 +1,61 @@
 .landing-page {
   /* ***********START CODING HERE***********  */
 
+  .button {
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 30px 5px;
+    cursor: pointer;
+    background-color: #609DFA;
+    border-radius: 20px;
+    }
+
+  .rectangle {
+    height: 3px;
+    width: 75px;
+    background-color: #609DFA;
+    border-radius: 75px;
+    margin: 0 auto;
+    }
+
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 2;
+    color: #f5f6f7;
+    }
+
+  p {font-size: 16px;}
+  
+  .margin1 {
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 40px;
+  }
+
+  .margin2 {margin-bottom: 25px;}
+
+  .lavendar {background-color: #ffffff; color: #D2A5E5;}
+
+  .bg-1 { 
+    background-color: #6C0075; /* purple part */
+    color: #ffffff;
+    }
+
+  .bg-2 { 
+    background-color: #ffffff; /* white part */
+    color: #474e5d;
+    }
+  
+  .container-fluid {
+    padding-top: 100px;
+    padding-bottom: 75px;
+    padding-left: 200px;
+    padding-right: 200px;
+    }
+
   /* ***********stop CODING HERE***********  */
 }

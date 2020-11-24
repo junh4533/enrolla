@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import Axios from "axios";
+// import Axios from "axios";
 import "./LandingPage.scss";
 
 const LandingPage = () => {

@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
 import Cookies from "js-cookie";
 import "./Preferences.scss";
-
 const Preferences = () => {
   const [courseList, setCourseList] = useState([]);
   const [coursesToTake, setCoursesToTake] = useState([]);
@@ -165,5 +164,4 @@ const Preferences = () => {
     </div>
   );
 };
-
 export default Preferences;

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.scss";
 import RegisteredLinks from "./RegisteredLinks";
 import UnRegisteredLinks from "./UnRegisteredLinks";
+import logo from "../../assets/images/logo.png";
 
 const Navbar = () => {
   return (
@@ -10,7 +11,7 @@ const Navbar = () => {
       {/* ***********START CODING HERE***********  */}
       <nav className="navbar navbar-expand-sm navbar-dark">
         <a className="navbar-brand" href="#">
-          Logo
+          <img src={logo} />
         </a>
         <ul className="navbar-nav ml-auto">
           <Link to="/">

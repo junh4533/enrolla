@@ -5,6 +5,13 @@
     .nav-item {
       color: white;
     }
+
+    .navbar-brand {
+      img {
+        width: 100px;
+        filter: brightness(150%);
+      }
+    }
   }
   /* ***********stop CODING HERE***********  */
 }

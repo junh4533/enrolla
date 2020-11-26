@@ -150,8 +150,6 @@ app.post("/api/query/preferences", (req, res) => {
     saturday = req.body.saturday,
     sunday = req.body.sunday,
     username = req.body.username,
-    // days = req.body.days,
-    // hours = req.body.hours,
     availabilityQuery =
       "INSERT INTO `student availability` (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES ('" +
       JSON.stringify(monday) +
@@ -177,25 +175,8 @@ app.post("/api/query/preferences", (req, res) => {
       "UPDATE student SET current_Credits = ?, `student availbility_Student_Availbility_ID` = (SELECT MAX(Student_Availbility_ID) FROM `student availability`) WHERE credentials_Credentials_ID = " +
       credentials;
 
-  console.log(monday);
-
-  const updateAvailability = runQuery(
-      res,
-      availabilityQuery
-      // JSON.stringify(monday),
-      // tuesday,
-      // wednesday,
-      // thursday,
-      // friday,
-      // saturday,
-      // sunday
-    ),
-    updateCoursePreference = runQuery(
-      res,
-      coursesQuery,
-      // coursesToTake,
-      username
-    ),
+  const updateAvailability = runQuery(res, availabilityQuery),
+    updateCoursePreference = runQuery(res, coursesQuery, username),
     updateCredits = runQuery(res, creditsQuery, credits, username);
 
   Promise.all([updateAvailability, updateCoursePreference, updateCredits]);
@@ -203,7 +184,14 @@ app.post("/api/query/preferences", (req, res) => {
 });
 
 // Query for student profile
-app.post("/api/query/profile", (req, res) => {});
+app.get("/api/query/profile", (req, res) => {
+  // const transcriptQuery = "SELECT * FROM transcript",
+  // studentQuery = "SELECT * FROM student",
+  //  availabilityQuery = "SELECT * FROM `student availability` WHERE `Student_Availbility_ID`=?",
+  //   majorQuery = "SELECT * FROM major WHERE Major_ID = ",
+  //   coursesQuery = "SELECT * FROM courses",
+  // runQuery(res, profileQuery);
+});
 
 app.listen(3001, () => {
   console.log("running on port 3001");

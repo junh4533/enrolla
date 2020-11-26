@@ -28,7 +28,7 @@ const LoginPage = () => {
     <div className="login-page">
       {/* ***********START CODING HERE***********  */}
       <h1>Login Page</h1>
-      <div className="container">
+      <div className="container1">
         {/* <form> */}
         <div className="form-group">
           <label>username:</label>

@@ -39,7 +39,7 @@ app.get("/api/query/test", (req, res) => {
 app.post("/api/query/test", (req, res) => {
   // TEST QUERY
   const testQuery =
-    "select student.Student_ID,`student availability`.Monday,`student availability`.Tuesday,`student availability`.Wednesday,`student availability`.Thursday,`student availability`.Friday,`student availability`.Saturday,`student availability`.Sunday from `student availability` inner join student on student.`student availbility_Student_Availbility_ID`=Student_Availbility_ID";
+    "select student.Student_ID,`student availability`.Monday,`student availability`.Tuesday,`student availability`.Wednesday,`student availability`.Thursday,`student availability`.Friday,`student availability`.Saturday,`student availability`.Sunday from `student availability` INNER JOIN student on student.`student availbility_Student_Availbility_ID`=Student_Availbility_ID";
   // const testQuery = "UPDATE student SET minor = 'ART' WHERE First_Name = 'Jun'";
   runQuery(res, testQuery);
 });
@@ -185,12 +185,20 @@ app.post("/api/query/preferences", (req, res) => {
 
 // Query for student profile
 app.get("/api/query/profile", (req, res) => {
-  // const transcriptQuery = "SELECT * FROM transcript",
-  // studentQuery = "SELECT * FROM student",
-  //  availabilityQuery = "SELECT * FROM `student availability` WHERE `Student_Availbility_ID`=?",
-  //   majorQuery = "SELECT * FROM major WHERE Major_ID = ",
-  //   coursesQuery = "SELECT * FROM courses",
-  // runQuery(res, profileQuery);
+  const username = req.query.username;
+  const studentAllInfoQuery =
+      "SELECT student.Student_ID,student.First_Name,student.Last_name,student.Email,student.Minor,student.Current_Credits,major.Major_Name,major.Degree,major.Degree_Credit,transcript.`Taken Classes`,`student availability`.Monday,`student availability`.Tuesday,`student availability`.Wednesday,`student availability`.Thursday,`student availability`.Friday,`student availability`.Saturday,`student availability`.Sunday FROM student INNER JOIN major on major.Major_ID=student.major_Major_ID INNER JOIN transcript on transcript.Transcript_ID=student.transcript_Transcript_ID INNER JOIN `student availability` on `student availability`.Student_Availbility_ID=student.`student availbility_Student_Availbility_ID` WHERE credentials_Credentials_ID = " +
+      credentials,
+    coursesQuery = "SELECT * FROM courses";
+
+  const sql = db.query(studentAllInfoQuery, [username], (err, result) => {
+    if (result) {
+      res.send(result);
+    } else {
+      console.log(err);
+    }
+  });
+  console.log(sql.sql);
 });
 
 app.listen(3001, () => {

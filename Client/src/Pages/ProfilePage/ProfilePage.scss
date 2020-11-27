@@ -1,5 +1,18 @@
 .profile-page {
   /* ***********START CODING HERE***********  */
+  #user-summary-column {
+    border: solid 2px #6c0075;
+    border-radius: 15px;
+    padding: 15px;
+    #user-summary {
+      background: #f4f4f4;
+      padding: 30px 20px;
+      border-radius: 15px;
+      .progress-bar {
+        background: #17ca54;
+      }
+    }
+  }
 
   /* ***********stop CODING HERE***********  */
 }

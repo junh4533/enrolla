@@ -6,7 +6,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       {/* ***********START CODING HERE***********  */}
-      <div className="container-fluid bg-1 text-center">
+      <div className="container-fluid bgpurple text-center">
         <h1 className="margin1">
           Worry less about planning for school with Enrolla.
         </h1>
@@ -20,7 +20,7 @@ const LandingPage = () => {
         </a>
       </div>
 
-      <div className="container-fluid bg-2 text-center">
+      <div className="container-fluid bgwhite text-center">
         <h3 className="margin2 lavendar">Benefits</h3>
         <div className="rectangle margin2"></div>
         <p>🗸 Keeps you on track for graduation</p>

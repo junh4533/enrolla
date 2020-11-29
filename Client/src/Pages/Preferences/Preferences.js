@@ -57,7 +57,8 @@ const Preferences = () => {
     };
   };
 
-  const PreferencesQuery = () => {
+  const PreferencesQuery = (e) => {
+    e.PreventDefault();
     Axios.post("http://localhost:3001/api/query/preferences", {
       credits: credits,
       coursesToTake: coursesToTake,
@@ -79,124 +80,129 @@ const Preferences = () => {
   };
 
   return (
-    <div className="preferences-page">
+    <div className="preferences-page main-content">
       {/* ***********START CODING HERE***********  */}
       <h1 className="margin4h1 text-center">Your Schedule Preferences</h1>
-      <h5 className="margin4h5 text-center">Plug in your answers in the fields below so we can generate a custom schedule for you.</h5>
+      <h5 className="margin4h5 text-center">
+        Plug in your answers in the fields below so we can generate a custom
+        schedule for you.
+      </h5>
       <div className="rectangle"></div>
       <div className="container containerpref">
-        <div className="form-group">
-          <div className="input-group mb-3">
-            <label className="d-block">Courses You Would Like to Take:</label>
-            <br />
-            <select
-              className="custom-select"
-              id="courses"
-              name="courses"
-              multiple
-              onChange={(e) => {
-                const values = [...e.target.selectedOptions].map((opt) =>
-                  String(opt.value)
-                );
-                setCoursesToTake(values);
-                console.log(values);
-              }}
-            >
-              {courseList.map((val) => {
-                return (
-                  <option value={val.Course_Name}>{val.Course_Name}</option>
-                );
-              })}
-            </select>
+        <form onSubmit={PreferencesQuery}>
+          <div className="form-group">
+            <div className="input-group mb-3">
+              <label className="d-block">Courses You Would Like to Take:</label>
+              <br />
+              <select
+                className="custom-select"
+                id="courses"
+                name="courses"
+                multiple
+                onChange={(e) => {
+                  const values = [...e.target.selectedOptions].map((opt) =>
+                    String(opt.value)
+                  );
+                  setCoursesToTake(values);
+                  console.log(values);
+                }}
+                required
+              >
+                {courseList.map((val) => {
+                  return (
+                    <option value={val.Course_Name}>{val.Course_Name}</option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="form-group">
-          <label>How many credits do you have?</label>
-          <input
-            type="number"
-            className="form-control"
-            name="credits"
-            onChange={(e) => {
-              setCredits(e.target.value);
-            }}
-          />
-        </div>
-        <div className="form-check">
-          <label className="form-check-label">
+          <div className="form-group">
+            <label>How many credits do you have?</label>
             <input
-              type="checkbox"
-              className="form-check-input"
+              type="number"
+              className="form-control"
+              name="credits"
               onChange={(e) => {
-                handleCheckbox(e.target);
+                setCredits(e.target.value);
               }}
+              max="256"
+              min="0"
+              required
             />
-            Mondays
-            <div className="form-group">
-              <label>From:</label>
+          </div>
+          <div className="form-check">
+            <label className="form-check-label">
               <input
-                type="time"
-                name="monday-start"
-                onBlur={(e) => {
-                  setMonday((prevState) => ({
-                    start: e.target.value,
-                    ...prevState,
-                  }));
+                type="checkbox"
+                className="form-check-input"
+                onChange={(e) => {
+                  handleCheckbox(e.target);
                 }}
-                disabled
               />
-            </div>
-            <div className="form-group">
-              <label>To:</label>
-              <input
-                type="time"
-                name="monday-end"
-                onBlur={(e) => {
-                  setMonday((prevState) => ({
-                    ...prevState,
-                    end: e.target.value,
-                  }));
-                }}
-                disabled
-              />
-            </div>
-            Excluding
-            <div className="form-group">
-              <label>From:</label>
-              <input
-                type="time"
-                name="monday-start"
-                onBlur={(e) => {
-                  setMonday((prevState) => ({
-                    excludingStart: e.target.value,
-                    ...prevState,
-                  }));
-                }}
-                disabled
-              />
-            </div>
-            <div className="form-group">
-              <label>To:</label>
-              <input
-                type="time"
-                name="monday-end"
-                onBlur={(e) => {
-                  setMonday((prevState) => ({
-                    ...prevState,
-                    excludingEnd: e.target.value,
-                  }));
-                }}
-                disabled
-              />
-            </div>
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={PreferencesQuery}
-        >
-          Submit
-        </button>
+              Mondays
+              <div className="form-group">
+                <label>From:</label>
+                <input
+                  type="time"
+                  name="monday-start"
+                  onBlur={(e) => {
+                    setMonday((prevState) => ({
+                      start: e.target.value,
+                      ...prevState,
+                    }));
+                  }}
+                  disabled
+                />
+              </div>
+              <div className="form-group">
+                <label>To:</label>
+                <input
+                  type="time"
+                  name="monday-end"
+                  onBlur={(e) => {
+                    setMonday((prevState) => ({
+                      ...prevState,
+                      end: e.target.value,
+                    }));
+                  }}
+                  disabled
+                />
+              </div>
+              Excluding
+              <div className="form-group">
+                <label>From:</label>
+                <input
+                  type="time"
+                  name="monday-start"
+                  onBlur={(e) => {
+                    setMonday((prevState) => ({
+                      excludingStart: e.target.value,
+                      ...prevState,
+                    }));
+                  }}
+                  disabled
+                />
+              </div>
+              <div className="form-group">
+                <label>To:</label>
+                <input
+                  type="time"
+                  name="monday-end"
+                  onBlur={(e) => {
+                    setMonday((prevState) => ({
+                      ...prevState,
+                      excludingEnd: e.target.value,
+                    }));
+                  }}
+                  disabled
+                />
+              </div>
+            </label>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
       {/* ***********stop CODING HERE***********  */}
     </div>

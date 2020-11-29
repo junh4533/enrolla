@@ -6,7 +6,10 @@ import "./LoginPage.scss";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const LoginQuery = () => {
+  const [authenticated, setAuthenticated] = useState("");
+
+  const LoginQuery = (e) => {
+    e.preventDefault();
     Axios.post("http://localhost:3001/api/query/login", {
       username: username,
       password: password,
@@ -14,8 +17,10 @@ const LoginPage = () => {
       .then((response) => {
         if (response.data == "INVALID LOGIN") {
           Cookies.set("user", "invalid");
+          setAuthenticated(false);
         } else {
           Cookies.set("user", username);
+          setAuthenticated(true);
           window.location = "/student-info";
         }
       })
@@ -25,52 +30,51 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-page main-content">
       {/* ***********START CODING HERE***********  */}
 
       <div className="container containerlogin">
-      <h1 className="margin3 text-center">Login</h1>
-      <div className="rectangle"></div>  
-        {/* <form> */}
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="usr"
-            name="username"
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="pwd"
-            name="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary" onClick={LoginQuery}>
-          Submit
-        </button>
-        {/* </form> */}
-        {Cookies.get("user") != "invalid" ? (
-          <h3 className="text-success">Authenticated</h3>
-        ) : (
-          <h3 className="text-danger">NOT Authenticated</h3>
+        <h1 className="margin3 text-center">Login</h1>
+        <div className="rectangle"></div>
+        <form onSubmit={LoginQuery}>
+          <div className="form-group">
+            <label>Username:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+        {authenticated == false && (
+          <p className="text-danger">Incorrect Username or Password</p>
         )}
-        <h3></h3>
       </div>
 
       <div className="row text-center">
         <div className="extras">
-          <p className="colorlinks" href="#">Create an Account</p>
+          <p className="colorlinks" href="#">
+            Create an Account
+          </p>
         </div>
 
         <div className="extras">

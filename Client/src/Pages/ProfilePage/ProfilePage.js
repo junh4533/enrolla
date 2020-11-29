@@ -38,27 +38,6 @@ const ProfilePage = () => {
       .then((response) => {
         setAllCourses(response.data);
         console.log(response.data);
-
-        // let courseFilter = allCourses;
-        // studentInfo.map((student) => {
-        //     student.Monday
-
-        //   allCourses.map((course) => {
-        //     // filters classes based on taken classes
-        //     student["Taken Classes"].map((takenClass) => {
-        //       courseFilter = courseFilter.filter(
-        //         (item) => item.Course_Name != takenClass
-        //       );
-        //     });
-        //   });
-
-        //   // filters classes based on preferences
-        //   courseFilter = courseFilter.filter((element) =>
-        //     student.course_Preference.includes(element.Course_Name)
-        //   );
-        // });
-
-        // setRecommendedClasses(courseFilter);
       })
       .catch((error) => {
         console.log(error);
@@ -103,7 +82,7 @@ const ProfilePage = () => {
       // filters classes based on core requirements
       courseFilter = courseFilter.filter(
         (element) =>
-          element.Required_majors == student.Major_Name || element.Core_Req == 1
+          element.Required_majors == student.Major_Name || element.Core_Req == 0
       );
 
       // filters classes based on DAYS
@@ -130,7 +109,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-page">
+    <div className="profile-page main-content">
       {/* ***********START CODING HERE***********  */}
       {studentInfo.map((student) => {
         const creditProgressWidth = () => {
@@ -144,51 +123,76 @@ const ProfilePage = () => {
         };
 
         return (
-          <div className="container my-5">
+          <div className="container py-5">
             <div className="row">
-              <div className="col-12 col-lg-4" id="user-summary-column">
-                <div className="text-center">
-                  <img src={userIcon} />
-                  <h3>User</h3>
-                </div>
-                <div className="" id="user-summary">
-                  <p>{student.Degree}</p>
-                  <p>{student.Major_Name}</p>
-                  <p>
-                    {student.Current_Credits}/{student.Degree_Credit} Credits
-                    Completed
-                  </p>
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      id="creditProgress"
-                      style={creditProgressWidth()}
-                    ></div>
+              <div className="col-12 col-lg-4">
+                <div className="d-flex flex-column" id="user-summary-column">
+                  <div className="text-center">
+                    <img src={userIcon} />
+                    <h3>User</h3>
                   </div>
-                  <p>{student["Taken Classes"].length}/4 Major Courses</p>
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      id="courseProgress"
-                      style={courseProgressWidth()}
-                    ></div>
+                  <div id="user-summary">
+                    <p>{student.Degree}</p>
+                    <p>{student.Major_Name}</p>
+                    <p>
+                      {student.Current_Credits}/{student.Degree_Credit} Credits
+                      Completed
+                    </p>
+                    <div className="progress">
+                      <div
+                        className="progress-bar"
+                        id="creditProgress"
+                        style={creditProgressWidth()}
+                      ></div>
+                    </div>
+                    <p>{student["Taken Classes"].length}/4 Major Courses</p>
+                    <div className="progress">
+                      <div
+                        className="progress-bar"
+                        id="courseProgress"
+                        style={courseProgressWidth()}
+                      ></div>
+                    </div>
                   </div>
+                  <button
+                    type="button"
+                    className="btn main-button mt-3 w-100"
+                    onClick={generateSchedule}
+                  >
+                    Generate Schedule
+                  </button>
                 </div>
               </div>
               <div className="col-12 col-lg-8">
-                <button onClick={generateSchedule}>Generate Schedule</button>
-                <button onClick={test}>Test</button>
-                <h1>Recommended Classes</h1>
-                {recommendedClasses.map((course) => {
-                  return (
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        <p>{course.Course_Name}</p>
-                        <p>{course.Classes_Section}</p>
-                      </li>
-                    </ul>
-                  );
-                })}
+                <h1 className="mb-3">Recommended Classes</h1>
+                <div id="coursesContainer">
+                  {recommendedClasses.map((course) => {
+                    return (
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <h4>{course.Course_Name}</h4>
+                          <p>Section: {course.Classes_Section}</p>
+
+                          <b>
+                            {course.Core_Req ? (
+                              <p>
+                                <span className="text-success">REQUIRED </span>
+                                for your major
+                              </p>
+                            ) : (
+                              <p>
+                                <span className="text-secondary">
+                                  NOT REQUIRED{" "}
+                                </span>
+                                for your major
+                              </p>
+                            )}
+                          </b>
+                        </li>
+                      </ul>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

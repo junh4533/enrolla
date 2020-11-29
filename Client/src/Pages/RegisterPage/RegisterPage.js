@@ -28,7 +28,7 @@ const RegisterPage = () => {
       });
   };
   return (
-    <div className="register-page">
+    <div className="register-page main-content">
       {/* ***********START CODING HERE***********  */}
       <h1>Register Page</h1>
       <div className="container">

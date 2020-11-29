@@ -4,11 +4,14 @@ import Cookies from "js-cookie";
 import "./ProfilePage.scss";
 import userIcon from "../../assets/images/user.png";
 
+let _ = require("underscore");
+
 const ProfilePage = () => {
   const [studentInfo, setStudentInfo] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
   const [recommendedClasses, setRecommendedClasses] = useState([]);
   const username = Cookies.get("user");
+  const [availableDays, setAvailableDays] = useState([]);
 
   useEffect(() => {
     const getProfile = Axios.get("http://localhost:3001/api/query/profile", {
@@ -36,50 +39,95 @@ const ProfilePage = () => {
         setAllCourses(response.data);
         console.log(response.data);
 
-        let courseFilter = allCourses;
-        studentInfo.map((student) => {
-          allCourses.map((course) => {
-            // filters classes based on taken classes
-            student["Taken Classes"].map((takenClass) => {
-              courseFilter = courseFilter.filter(
-                (item) => item.Course_Name != takenClass
-              );
-            });
-          });
+        // let courseFilter = allCourses;
+        // studentInfo.map((student) => {
+        //     student.Monday
 
-          // filters classes based on preferences
-          courseFilter = courseFilter.filter((element) =>
-            student.course_Preference.includes(element.Course_Name)
-          );
-        });
+        //   allCourses.map((course) => {
+        //     // filters classes based on taken classes
+        //     student["Taken Classes"].map((takenClass) => {
+        //       courseFilter = courseFilter.filter(
+        //         (item) => item.Course_Name != takenClass
+        //       );
+        //     });
+        //   });
 
-        setRecommendedClasses(courseFilter);
+        //   // filters classes based on preferences
+        //   courseFilter = courseFilter.filter((element) =>
+        //     student.course_Preference.includes(element.Course_Name)
+        //   );
+        // });
+
+        // setRecommendedClasses(courseFilter);
       })
       .catch((error) => {
         console.log(error);
       });
 
-    Promise.all([getProfile, getSections]).then((response) => {
-      // let courseFilter = allCourses;
-      // studentInfo.map((student) => {
-      //   allCourses.map((course) => {
-      //     // filters classes based on taken classes
-      //     student["Taken Classes"].map((takenClass) => {
-      //       courseFilter = courseFilter.filter(
-      //         (item) => item.Course_Name != takenClass
-      //       );
-      //     });
-      //   });
-      //   // filters classes based on preferences
-      //   courseFilter = courseFilter.filter((element) =>
-      //     student.course_Preference.includes(element.Course_Name)
-      //   );
-      // });
-      // setRecommendedClasses(courseFilter);
-    });
+    Promise.all([getProfile, getSections]);
   }, []);
 
-  // setRecommendedClasses(courseFilter);
+  const generateSchedule = () => {
+    let courseFilter = allCourses;
+    let days = [];
+
+    studentInfo.map((student) => {
+      setAvailableDays([
+        student.Monday,
+        student.Tuesday,
+        student.Wednesday,
+        student.Thursday,
+        student.Friday,
+        student.Saturday,
+        student.Sunday,
+      ]);
+
+      availableDays.map((day, index) => {
+        JSON.stringify(day) != "{}" && days.push(index + 1);
+      });
+
+      allCourses.map((course) => {
+        // filters classes based on taken classes
+        student["Taken Classes"].map((takenClass) => {
+          courseFilter = courseFilter.filter(
+            (item) => item.Course_Name != takenClass
+          );
+        });
+      });
+
+      // filters classes based on preferences
+      courseFilter = courseFilter.filter((element) =>
+        student.course_Preference.includes(element.Course_Name)
+      );
+
+      // filters classes based on core requirements
+      courseFilter = courseFilter.filter(
+        (element) =>
+          element.Required_majors == student.Major_Name || element.Core_Req == 1
+      );
+
+      // filters classes based on DAYS
+      courseFilter = courseFilter.filter((element) => {
+        return days.some((day) => {
+          if (_.values(element.Class_Day).includes(day)) {
+            return true;
+          }
+        });
+      });
+    });
+
+    console.log(courseFilter);
+    setRecommendedClasses(courseFilter);
+  };
+
+  const test = () => {
+    // let days = [];
+    // availableDays.map((day, index) => {
+    //   JSON.stringify(day) != "{}" && days.push(index + 1);
+    // });
+    // console.log(days);
+    // console.log(availableDays);
+  };
 
   return (
     <div className="profile-page">
@@ -128,9 +176,18 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="col-12 col-lg-8">
+                <button onClick={generateSchedule}>Generate Schedule</button>
+                <button onClick={test}>Test</button>
                 <h1>Recommended Classes</h1>
                 {recommendedClasses.map((course) => {
-                  return <p>{course.Course_Name}</p>;
+                  return (
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <p>{course.Course_Name}</p>
+                        <p>{course.Classes_Section}</p>
+                      </li>
+                    </ul>
+                  );
                 })}
               </div>
             </div>

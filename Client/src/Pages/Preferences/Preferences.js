@@ -81,8 +81,10 @@ const Preferences = () => {
   return (
     <div className="preferences-page">
       {/* ***********START CODING HERE***********  */}
-      <h1>Preferences Page</h1>
-      <div className="container">
+      <h1 className="margin4h1 text-center">Your Schedule Preferences</h1>
+      <h5 className="margin4h5 text-center">Plug in your answers in the fields below so we can generate a custom schedule for you.</h5>
+      <div className="rectangle"></div>
+      <div className="container containerpref">
         <div className="form-group">
           <div className="input-group mb-3">
             <label className="d-block">Courses You Would Like to Take:</label>

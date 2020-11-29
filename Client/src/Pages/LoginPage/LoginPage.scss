@@ -1,10 +1,43 @@
-.container1 {
-    border-radius: 5px;
-    border: 1px solid #6c0075;
+  .containerlogin {
+    border-radius: 30px;
+    border: 2px solid #2e2e2e;
     padding: 25px;
-    margin-bottom: 190px;
-    margin-top: 110px;
+    margin-bottom: 60px;
+    margin-top: 100px;
     margin-left: 35%;
-    width: 500px;
-    height: 300px;
+    width: 450px;
+    height: 480px;
+    box-shadow:5px 10px 10px 1px #cfcfcf;
+  }
+
+  .margin3 {
+    margin-top: 40px;
+    margin-bottom: 25px;
+  }
+
+  .rectangle {
+    height: 3px;
+    width: 65px;
+    background-color: #609dfa;
+    border-radius: 75px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+
+  .extras {
+    float: left; 
+    width: 200px;
+    clear: left;
+  }
+
+  .row {
+    width: 600px;
+    margin-left: 450px;
+    margin-bottom: 60px;
+  }
+
+  .colorlinks {
+    font-size: 16px;
+    background-color: #ffffff;
+    font-weight: normal;
   }

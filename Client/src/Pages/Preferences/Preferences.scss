@@ -1,5 +1,48 @@
 .preferences-page {
   /* ***********START CODING HERE***********  */
 
+  .containerpref {
+    border-radius: 30px;
+    border: 1px solid #ffffff;
+    padding: 25px;
+    margin-bottom: 60px;
+    margin-top: 50px;
+    margin-left: 14%;
+    width: 1200px;
+    height: 1000px;
+  }
+
+  .rectangle {
+    height: 3px;
+    width: 95px;
+    background-color: #609dfa;
+    border-radius: 75px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+
+  .margin4h1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+
+  .margin4h5 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: lighter;
+  }
+
+  .objectsinside {
+    float: left; 
+    width: 100px;
+    clear: left;
+  }
+
+  .formcontainer {
+    width: 600px;
+    height: 100px;
+  }
+
   /* ***********stop CODING HERE***********  */
 }

@@ -32,9 +32,6 @@ const Navbar = () => {
           <Link to="/profile">
             <li className="nav-item">Profile</li>
           </Link>
-          <Link to="/sqltest">
-            <li className="nav-item">SQL Test</li>
-          </Link>
         </ul>
       </nav>
       {/* ***********stop CODING HERE***********  */}

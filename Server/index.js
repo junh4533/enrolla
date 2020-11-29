@@ -32,18 +32,6 @@ const runQuery = (res, query, ...args) => {
   console.log(sql.sql);
 };
 
-app.get("/api/query/test", (req, res) => {
-  console.log(req.cookies);
-});
-
-app.post("/api/query/test", (req, res) => {
-  // TEST QUERY
-  const testQuery =
-    "select student.Student_ID,`student availability`.Monday,`student availability`.Tuesday,`student availability`.Wednesday,`student availability`.Thursday,`student availability`.Friday,`student availability`.Saturday,`student availability`.Sunday from `student availability` inner join student on student.`student availbility_Student_Availbility_ID`=Student_Availbility_ID";
-  // const testQuery = "UPDATE student SET minor = 'ART' WHERE First_Name = 'Jun'";
-  runQuery(res, testQuery);
-});
-
 // Query for user registration
 app.post("/api/query/registration", (req, res) => {
   const fname = req.body.fname,
@@ -150,8 +138,6 @@ app.post("/api/query/preferences", (req, res) => {
     saturday = req.body.saturday,
     sunday = req.body.sunday,
     username = req.body.username,
-    // days = req.body.days,
-    // hours = req.body.hours,
     availabilityQuery =
       "INSERT INTO `student availability` (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES ('" +
       JSON.stringify(monday) +
@@ -174,28 +160,11 @@ app.post("/api/query/preferences", (req, res) => {
       "' WHERE credentials_Credentials_ID = " +
       credentials,
     creditsQuery =
-      "UPDATE student SET current_Credits = ?, `student availbility_Student_Availbility_ID` = (SELECT MAX(Student_Availbility_ID) FROM `student availability`) WHERE credentials_Credentials_ID = " +
+      "UPDATE student SET current_Credits = ?, `student availability_Student_Availability_ID` = (SELECT MAX(Student_Availability_ID) FROM `student availability`) WHERE credentials_Credentials_ID = " +
       credentials;
 
-  console.log(monday);
-
-  const updateAvailability = runQuery(
-      res,
-      availabilityQuery
-      // JSON.stringify(monday),
-      // tuesday,
-      // wednesday,
-      // thursday,
-      // friday,
-      // saturday,
-      // sunday
-    ),
-    updateCoursePreference = runQuery(
-      res,
-      coursesQuery,
-      // coursesToTake,
-      username
-    ),
+  const updateAvailability = runQuery(res, availabilityQuery),
+    updateCoursePreference = runQuery(res, coursesQuery, username),
     updateCredits = runQuery(res, creditsQuery, credits, username);
 
   Promise.all([updateAvailability, updateCoursePreference, updateCredits]);
@@ -203,7 +172,37 @@ app.post("/api/query/preferences", (req, res) => {
 });
 
 // Query for student profile
-app.post("/api/query/profile", (req, res) => {});
+app.get("/api/query/profile", (req, res) => {
+  const username = req.query.username;
+  const studentAllInfoQuery =
+    "SELECT student.Student_ID,student.First_Name,student.Last_name,student.Email,student.Minor,student.Current_Credits, student.course_Preference, major.Major_Name,major.Degree,major.Degree_Credit,transcript.`Taken Classes`,`student availability`.Monday,`student availability`.Tuesday,`student availability`.Wednesday,`student availability`.Thursday,`student availability`.Friday,`student availability`.Saturday,`student availability`.Sunday FROM student INNER JOIN major on major.Major_ID=student.major_Major_ID INNER JOIN transcript on transcript.Transcript_ID=student.transcript_Transcript_ID INNER JOIN `student availability` on `student availability`.Student_Availability_ID=student.`student Availability_Student_Availability_ID` WHERE credentials_Credentials_ID = " +
+    credentials;
+
+  const sql = db.query(studentAllInfoQuery, [username], (err, result) => {
+    if (result) {
+      res.send(result);
+    } else {
+      console.log(err);
+    }
+  });
+  console.log(sql.sql);
+});
+
+// Query for ALL courses
+app.get("/api/query/all-sections", (req, res) => {
+  const username = req.query.username;
+  const coursesQuery =
+    "SELECT courses.Course_Name, courses.Required_majors, courses.Core_Req, `classes sections`.Classes_Section,`classes sections`.Class_Day,`classes sections`.Class_Start_Time,`classes sections`.Class_End_Time FROM `classes sections` INNER JOIN courses ON `classes sections`.courses_Course_ID=courses.Course_Number";
+
+  const sql = db.query(coursesQuery, [username], (err, result) => {
+    if (result) {
+      res.send(result);
+    } else {
+      console.log(err);
+    }
+  });
+  console.log(sql.sql);
+});
 
 app.listen(3001, () => {
   console.log("running on port 3001");

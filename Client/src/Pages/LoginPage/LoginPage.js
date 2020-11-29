@@ -27,11 +27,13 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       {/* ***********START CODING HERE***********  */}
-      <h1>Login Page</h1>
-      <div className="container">
+
+      <div className="container containerlogin">
+      <h1 className="margin3 text-center">Login</h1>
+      <div className="rectangle"></div>  
         {/* <form> */}
         <div className="form-group">
-          <label>username:</label>
+          <label>Username:</label>
           <input
             type="text"
             className="form-control"
@@ -64,6 +66,20 @@ const LoginPage = () => {
           <h3 className="text-danger">NOT Authenticated</h3>
         )}
         <h3></h3>
+      </div>
+
+      <div className="row text-center">
+        <div className="extras">
+          <p className="colorlinks" href="#">Create an Account</p>
+        </div>
+
+        <div className="extras">
+          <p className="colorlinks">Recover an Account</p>
+        </div>
+
+        <div className="extras">
+          <p className="colorlinks">Login with Google</p>
+        </div>
       </div>
       {/* ***********stop CODING HERE***********  */}
     </div>

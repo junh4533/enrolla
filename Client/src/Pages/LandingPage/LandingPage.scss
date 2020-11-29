@@ -3,7 +3,7 @@
 
   .button {
     border: none;
-    color: white;
+    color: #ffffff;
     padding: 15px 30px;
     text-align: center;
     display: inline-block;
@@ -16,21 +16,19 @@
 
   .rectangle {
     height: 3px;
-    width: 75px;
+    width: 85px;
     background-color: #609dfa;
     border-radius: 75px;
     margin: 0 auto;
   }
 
   body {
-    font: 20px Montserrat, sans-serif;
+    font: 20px Didot, serif;
     line-height: 2;
     color: #f5f6f7;
   }
 
-  p {
-    font-size: 16px;
-  }
+  p {font-size: 16px;}
 
   .margin1 {
     margin-bottom: 40px;
@@ -47,13 +45,13 @@
     color: #d2a5e5;
   }
 
-  .bg-1 {
-    background-color: #6c0075; /* purple part */
+  .bgpurple {
+    background-color: #6c0075;
     color: #ffffff;
   }
 
-  .bg-2 {
-    background-color: #ffffff; /* white part */
+  .bgwhite {
+    background-color: #ffffff;
     color: #474e5d;
   }
 
@@ -62,6 +60,10 @@
     padding-bottom: 75px;
     padding-left: 200px;
     padding-right: 200px;
+  }
+
+  .checkmark{
+    color: #609DFA; font-size: 40px;
   }
 
   /* ***********stop CODING HERE***********  */

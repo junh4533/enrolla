@@ -10,7 +10,7 @@ const RegisteredLinks = () => {
   return (
     <React.Fragment>
       <Link to="/student-info">
-        <li className="nav-item">Student Info</li>
+        <li className="nav-item">Student Information</li>
       </Link>
       <Link to="/preferences">
         <li className="nav-item">Preferences</li>

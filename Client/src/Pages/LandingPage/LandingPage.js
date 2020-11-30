@@ -6,7 +6,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page main-content">
       {/* ***********START CODING HERE***********  */}
-      <div className="bgholder bgpurple text-center">
+      <div className="bgholder bgpurple text-center" id="description">
         <h1 className="margin1">
           Worry less about planning for school with Enrolla.
         </h1>
@@ -15,12 +15,12 @@ const LandingPage = () => {
           your personal time constraints, subject preferences, and graduation
           requirements.
         </h5>
-        <a href="/register" className="button main-button">
+        <a href="/register" className="button">
           Sign Up Now
         </a>
       </div>
 
-      <div className="bgholder bgwhite text-center">
+      <div className="bgholder bgwhite text-center" id="benefits">
         <h3 className="margin2 lavendar">Benefits</h3>
         <div className="rectangle margin2"></div>
         <p>🗸 Keeps you on track for graduation</p>

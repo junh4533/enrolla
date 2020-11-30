@@ -8,14 +8,12 @@
     color: #ffffff;
     text-align: center;
     text-decoration: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    display: inline-block;
+    padding: 15px 30px;
     margin-top: 30px;
     border-radius: 50px;
     cursor: pointer;
+    width: 20%;
+    margin: 1rem auto;
   }
 
   .rectangle {
@@ -63,10 +61,24 @@
   }
 
   .bgholder {
-    padding-top: 100px;
+    // padding-top: 100px;
     padding-left: 200px;
     padding-right: 200px;
-    padding-bottom: 75px;
+    // padding-bottom: 75px;
+  }
+
+  #description {
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #benefits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35vh;
   }
 
   .checkmark {

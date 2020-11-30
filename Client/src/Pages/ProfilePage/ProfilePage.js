@@ -59,7 +59,7 @@ const ProfilePage = () => {
   }, []);
 
   const generateSchedule = () => {
-    let courseFilter = allCourses;
+    let filteredCourses = allCourses;
     let days = [];
     let timeslots = [];
 
@@ -80,28 +80,28 @@ const ProfilePage = () => {
         console.log(timeslots);
       });
 
-      allCourses.map((course) => {
-        // filters classes based on taken classes
+      // filters classes based on taken classes
+      filteredCourses.map((course) => {
         student["Taken Classes"].map((takenClass) => {
-          courseFilter = courseFilter.filter(
+          filteredCourses = filteredCourses.filter(
             (item) => item.Course_Name != takenClass
           );
         });
       });
 
       // filters classes based on preferences
-      courseFilter = courseFilter.filter((course) =>
+      filteredCourses = filteredCourses.filter((course) =>
         student.course_Preference.includes(course.Course_Name)
       );
 
       // filters classes based on core requirements
-      courseFilter = courseFilter.filter(
+      filteredCourses = filteredCourses.filter(
         (course) =>
           course.Required_majors == student.Major_Name || course.Core_Req == 0
       );
 
       // filters classes based on DAYS
-      courseFilter = courseFilter.filter((course) => {
+      filteredCourses = filteredCourses.filter((course) => {
         return days.some((day) => {
           if (_.values(course.Class_Day).includes(day)) {
             return true;
@@ -110,7 +110,7 @@ const ProfilePage = () => {
       });
 
       // filters classes based on TIMESLOTS
-      courseFilter = courseFilter.filter((course) => {
+      filteredCourses = filteredCourses.filter((course) => {
         return timeslots.some((timeslot) => {
           if (
             timeslot.start <= course.Class_Start_Time &&
@@ -124,17 +124,8 @@ const ProfilePage = () => {
       });
     });
 
-    console.log(courseFilter);
-    setRecommendedClasses(courseFilter);
-  };
-
-  const test = () => {
-    // let days = [];
-    // availableDays.map((day, index) => {
-    //   JSON.stringify(day) != "{}" && days.push(index + 1);
-    // });
-    // console.log(days);
-    // console.log(availableDays);
+    console.log(filteredCourses);
+    setRecommendedClasses(filteredCourses);
   };
 
   return (
@@ -153,11 +144,11 @@ const ProfilePage = () => {
 
         return (
           <div className="container py-5">
-            <div className="row">
+            <div className="row d-flex justify-content-center">
               <div className="col-12 col-lg-4">
                 <div className="d-flex flex-column" id="user-summary-column">
                   <div className="text-center">
-                    <img src={userIcon} />
+                    <img src={userIcon} alt="user icon" />
                     <h3>{student.First_Name}</h3>
                   </div>
                   <div id="user-summary">
@@ -194,7 +185,7 @@ const ProfilePage = () => {
                   </button>
                 </div>
               </div>
-              <div className="col-12 col-lg-8">
+              <div className="col-12 col-lg-6">
                 <h1 className="mb-3">Recommended Classes</h1>
                 <div id="coursesContainer">
                   <ul className="list-group">

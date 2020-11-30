@@ -1,8 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
 import Cookies from "js-cookie";
+import moment from "moment";
 import "./ProfilePage.scss";
 import userIcon from "../../assets/images/user.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 let _ = require("underscore");
 
@@ -12,6 +15,15 @@ const ProfilePage = () => {
   const [recommendedClasses, setRecommendedClasses] = useState([]);
   const username = Cookies.get("user");
   const [availableDays, setAvailableDays] = useState([]);
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   useEffect(() => {
     const getProfile = Axios.get("http://localhost:3001/api/query/profile", {
@@ -49,6 +61,7 @@ const ProfilePage = () => {
   const generateSchedule = () => {
     let courseFilter = allCourses;
     let days = [];
+    let timeslots = [];
 
     studentInfo.map((student) => {
       setAvailableDays([
@@ -63,6 +76,8 @@ const ProfilePage = () => {
 
       availableDays.map((day, index) => {
         JSON.stringify(day) != "{}" && days.push(index + 1);
+        timeslots.push(day);
+        console.log(timeslots);
       });
 
       allCourses.map((course) => {
@@ -75,20 +90,34 @@ const ProfilePage = () => {
       });
 
       // filters classes based on preferences
-      courseFilter = courseFilter.filter((element) =>
-        student.course_Preference.includes(element.Course_Name)
+      courseFilter = courseFilter.filter((course) =>
+        student.course_Preference.includes(course.Course_Name)
       );
 
       // filters classes based on core requirements
       courseFilter = courseFilter.filter(
-        (element) =>
-          element.Required_majors == student.Major_Name || element.Core_Req == 0
+        (course) =>
+          course.Required_majors == student.Major_Name || course.Core_Req == 0
       );
 
       // filters classes based on DAYS
-      courseFilter = courseFilter.filter((element) => {
+      courseFilter = courseFilter.filter((course) => {
         return days.some((day) => {
-          if (_.values(element.Class_Day).includes(day)) {
+          if (_.values(course.Class_Day).includes(day)) {
+            return true;
+          }
+        });
+      });
+
+      // filters classes based on TIMESLOTS
+      courseFilter = courseFilter.filter((course) => {
+        return timeslots.some((timeslot) => {
+          if (
+            timeslot.start <= course.Class_Start_Time &&
+            timeslot.end >= course.Class_End_Time &&
+            (timeslot.excludingStart >= course.Class_End_Time ||
+              timeslot.excludingEnd <= course.Class_Start_Time)
+          ) {
             return true;
           }
         });
@@ -129,12 +158,12 @@ const ProfilePage = () => {
                 <div className="d-flex flex-column" id="user-summary-column">
                   <div className="text-center">
                     <img src={userIcon} />
-                    <h3>User</h3>
+                    <h3>{student.First_Name}</h3>
                   </div>
                   <div id="user-summary">
-                    <p>{student.Degree}</p>
                     <p>{student.Major_Name}</p>
-                    <p>
+                    <p className="font-italic">{student.Degree}</p>
+                    <p className="progress-text">
                       {student.Current_Credits}/{student.Degree_Credit} Credits
                       Completed
                     </p>
@@ -145,7 +174,9 @@ const ProfilePage = () => {
                         style={creditProgressWidth()}
                       ></div>
                     </div>
-                    <p>{student["Taken Classes"].length}/4 Major Courses</p>
+                    <p className="progress-text">
+                      {student["Taken Classes"].length}/4 Major Courses
+                    </p>
                     <div className="progress">
                       <div
                         className="progress-bar"
@@ -159,20 +190,41 @@ const ProfilePage = () => {
                     className="btn main-button mt-3 w-100"
                     onClick={generateSchedule}
                   >
-                    Generate Schedule
+                    Find Classes
                   </button>
                 </div>
               </div>
               <div className="col-12 col-lg-8">
                 <h1 className="mb-3">Recommended Classes</h1>
                 <div id="coursesContainer">
-                  {recommendedClasses.map((course) => {
-                    return (
-                      <ul class="list-group">
-                        <li class="list-group-item">
+                  <ul className="list-group">
+                    {recommendedClasses.map((course) => {
+                      return (
+                        <li className="list-group-item">
                           <h4>{course.Course_Name}</h4>
                           <p>Section: {course.Classes_Section}</p>
-
+                          <p>
+                            <FontAwesomeIcon icon={faCalendar} />{" "}
+                            {course.Class_Day.map((day, index) => {
+                              return (
+                                <span>
+                                  {daysOfWeek[course.Class_Day[index] - 1]}{" "}
+                                </span>
+                              );
+                            })}
+                            {/* {} &{" "}
+                            {daysOfWeek[course.Class_Day[1] - 1]} */}
+                          </p>
+                          <p>
+                            <FontAwesomeIcon icon={faClock} />{" "}
+                            {moment(course.Class_Start_Time, "HH:mm:ss").format(
+                              "h:mm:ss A"
+                            )}{" "}
+                            -{" "}
+                            {moment(course.Class_End_Time, "HH:mm:ss").format(
+                              "h:mm:ss A"
+                            )}
+                          </p>
                           <b>
                             {course.Core_Req ? (
                               <p>
@@ -189,9 +241,9 @@ const ProfilePage = () => {
                             )}
                           </b>
                         </li>
-                      </ul>
-                    );
-                  })}
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>

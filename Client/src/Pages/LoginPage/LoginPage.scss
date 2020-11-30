@@ -1,13 +1,10 @@
+.login-page {
   .containerlogin {
     border-radius: 10px;
-    border: 1.5px solid #2e2e2e;
+    border: 1.5px solid #c4c4c4;
     padding: 25px;
-    margin-bottom: 70px;
-    margin-top: 100px;
-    margin-left: 35%;
-    width: 450px;
-    height: 480px;
-    box-shadow:5px 10px 10px 1px #cfcfcf;
+    max-width: 600px;
+    box-shadow: 3px 3px 3px 1px #cfcfcf;
   }
 
   .margin3 {
@@ -25,36 +22,21 @@
   }
 
   .extras {
-    float: left; 
+    float: left;
     width: 250px;
     clear: left;
   }
 
-  .row {
-    width: 750px;
-    margin-left: 25%;
-    margin-bottom: 60px;
-  }
+  // .row {
+  //   width: 750px;
+  //   margin-left: 376px;
+  //   margin-bottom: 60px;
+  // }
 
   .colorlinks {
     font-size: 16px;
-    background-color: #ffffff;
+    // background-color: #ffffff;
     font-weight: normal;
+    color: #609dfa;
   }
-
-  .loginbutton { /* effects ALL attributes IF this is named 'btn' on all pages */
-    border: none !important;
-    font-size: 18px !important;
-    background-color: #609dfa !important;
-    color: #ffffff !important;
-    text-align: center !important;
-    text-decoration: none !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    padding-left: 171px !important;
-    padding-right: 171px !important;
-    display: inline-block !important;
-    margin-top: 25px !important;
-    border-radius: 40px !important;
-    cursor: pointer !important;
-  }
+}

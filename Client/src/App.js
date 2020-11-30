@@ -11,7 +11,6 @@ import StudentInfo from "./Pages/StudentInfoPage";
 import Preferences from "./Pages/Preferences";
 import ProfilePage from "./Pages/ProfilePage";
 import AdPage from "./Pages/AdPage";
-import SqlTest from "./Pages/SqlTest";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
         <ProtectedRoute path="/student-info" component={StudentInfo} />
         <ProtectedRoute path="/preferences" component={Preferences} />
         <ProtectedRoute path="/profile" component={ProfilePage} />
-        <ProtectedRoute path="/sqltest" component={SqlTest} />
         <ProtectedRoute path="/ad" component={AdPage} />
         <Footer />
       </div>

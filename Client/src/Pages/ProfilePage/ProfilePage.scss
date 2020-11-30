@@ -1,5 +1,26 @@
 .profile-page {
   /* ***********START CODING HERE***********  */
+  #user-summary-column {
+    border: solid 2px #84208d;
+    border-radius: 15px;
+    padding: 10px 15px;
+    #user-summary {
+      background: #f4f4f4;
+      padding: 30px 20px;
+      border-radius: 15px;
+      .progress-bar {
+        background: rgb(210, 165, 229);
+      }
+      .progress-text {
+        margin: 1rem 0 0.2rem 0;
+      }
+    }
+  }
+
+  #coursesContainer {
+    height: 60vh;
+    overflow-y: auto;
+  }
 
   /* ***********stop CODING HERE***********  */
 }

@@ -1,0 +1,25 @@
+.register-page {
+  form {
+    max-width: 750px;
+    margin: 2rem auto;
+  }
+  .rectangle {
+    height: 3px;
+    width: 95px;
+    background-color: #609dfa;
+    border-radius: 75px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 40px;
+  }
+
+  .margin4h1 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+
+  .margin4h5 {
+    margin-bottom: 20px;
+    font-weight: lighter;
+  }
+}

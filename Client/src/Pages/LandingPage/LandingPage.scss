@@ -8,14 +8,12 @@
     color: #ffffff;
     text-align: center;
     text-decoration: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 60px;
-    padding-right: 60px;
-    display: inline-block;
+    padding: 15px 30px;
     margin-top: 30px;
     border-radius: 50px;
     cursor: pointer;
+    width: 20%;
+    margin: 1rem auto;
   }
 
   .rectangle {
@@ -33,7 +31,9 @@
     color: #f5f6f7;
   }
 
-  p {font-size: 16px;}
+  p {
+    font-size: 16px;
+  }
 
   .margin1 {
     margin-bottom: 40px;
@@ -51,7 +51,7 @@
   }
 
   .bgpurple {
-    background-color: #6c0075;
+    background-color: #84208d;
     color: #ffffff;
   }
 
@@ -61,14 +61,29 @@
   }
 
   .bgholder {
-    padding-top: 100px;
+    // padding-top: 100px;
     padding-left: 200px;
     padding-right: 200px;
-    padding-bottom: 75px;
+    // padding-bottom: 75px;
   }
 
-  .checkmark{
-    color: #609DFA; font-size: 40px;
+  #description {
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #benefits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35vh;
+  }
+
+  .checkmark {
+    color: #609dfa;
+    font-size: 40px;
   }
 
   /* ***********stop CODING HERE***********  */

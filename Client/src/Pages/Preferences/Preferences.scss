@@ -1,15 +1,15 @@
 .preferences-page {
   /* ***********START CODING HERE***********  */
-
-  .containerpref {
-    border: 1px solid #ffffff;
-    padding: 25px;
-    margin-bottom: 60px;
-    margin-top: 50px;
-    margin-left: 14%;
-    width: 1200px;
-    height: 1400px;
-  }
+  height: 100% !important;
+  // .containerpref {
+  //   border: 1px solid #ffffff;
+  //   padding: 25px;
+  //   // margin-bottom: 60px;
+  //   // margin-top: 50px;
+  //   // margin-left: 14%;
+  //   // width: 1200px;
+  //   // height: 1000px;
+  // }
 
   .rectangle {
     height: 3px;
@@ -17,48 +17,47 @@
     background-color: #609dfa;
     border-radius: 75px;
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     margin-top: 40px;
   }
 
   .margin4h1 {
     margin-top: 50px;
-    margin-bottom: 20px;
-    font-size: 42px;
+    margin-bottom: 10px;
   }
 
   .margin4h5 {
-    margin-top: 20px;
     margin-bottom: 20px;
     font-weight: lighter;
   }
 
-  .coursestext{
+  .coursestext {
     font-size: 22px;
     background-color: #ffffff;
     margin-right: 1%;
   }
 
-  .creditstext{
+  .creditstext {
     font-size: 22px;
     background-color: #ffffff;
     margin-right: 20px;
     margin-top: 20px;
   }
 
-  .daystext{
+  .daystext {
     font-size: 19px;
     background-color: #ffffff;
   }
 
-  .h5daystext{
+  .h5daystext {
     font-size: 22px;
     background-color: #ffffff;
     margin-bottom: 25px;
     margin-top: 40px;
   }
 
-  .prefbutton { /* effects ALL attributes IF this is named 'btn' on all pages */
+  .prefbutton {
+    /* effects ALL attributes IF this is named 'btn' on all pages */
     border: none !important;
     font-size: 18px !important;
     background-color: #609dfa !important;

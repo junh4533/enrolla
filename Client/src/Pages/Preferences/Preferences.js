@@ -51,7 +51,7 @@ const Preferences = () => {
     return (
       <div className="col">
         <h5>{props.day}</h5>
-        <div className="form-group">
+        <div className="form-group mt-4">
           <label>From:</label>
           <input
             className="form-control"
@@ -60,7 +60,7 @@ const Preferences = () => {
             defaultValue={props.state.start}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label>To:</label>
           <input
             className="form-control"
@@ -69,7 +69,7 @@ const Preferences = () => {
             defaultValue={props.state.end}
           />
         </div>
-        Excluding
+        <b>Exclude</b>
         <div className="form-group">
           <label>From:</label>
           <input
@@ -332,7 +332,7 @@ const Preferences = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn main-button w-100 mt-3">
+          <button type="submit" className="btn main-button">
             Next
           </button>
         </form>

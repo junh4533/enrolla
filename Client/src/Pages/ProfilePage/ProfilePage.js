@@ -178,7 +178,7 @@ const ProfilePage = () => {
                   </div>
                   <button
                     type="button"
-                    className="btn main-button mt-3 w-100"
+                    className="btn main-button"
                     onClick={generateSchedule}
                   >
                     Find Classes

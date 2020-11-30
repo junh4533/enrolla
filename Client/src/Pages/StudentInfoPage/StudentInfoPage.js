@@ -123,7 +123,7 @@ const StudentInfoPage = () => {
               })}
             </select>
           </div>
-          <button type="submit" className="btn main-button w-100 mt-3">
+          <button type="submit" className="btn main-button">
             Next
           </button>
         </form>

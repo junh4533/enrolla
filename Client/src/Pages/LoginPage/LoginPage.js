@@ -30,10 +30,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page main-content">
+    <div className="login-page main-content d-flex flex-column justify-content-center">
       {/* ***********START CODING HERE***********  */}
 
-      <div className="container containerlogin">
+      <div className="container containerlogin ">
         <h1 className="margin3 text-center">Login</h1>
         <div className="rectangle"></div>
         <form onSubmit={LoginQuery}>
@@ -61,30 +61,32 @@ const LoginPage = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button type="submit" className="btn main-button">
+            Login
           </button>
         </form>
         {authenticated == false && (
-          <p className="text-danger">Incorrect Username or Password</p>
-        )}
-      </div>
-
-      <div className="row text-center">
-        <div className="extras">
-          <p className="colorlinks" href="#">
-            Create an Account
+          <p className="text-danger text-center mt-1">
+            Incorrect Username or Password
           </p>
-        </div>
-
-        <div className="extras">
-          <p className="colorlinks">Recover an Account</p>
-        </div>
-
-        <div className="extras">
-          <p className="colorlinks">Login with Google</p>
+        )}
+        <div className="container-fluid">
+          <div className="row text-center">
+            <div className="col">
+              <p className="colorlinks" href="#">
+                Create an Account
+              </p>
+            </div>
+            <div className="col">
+              <p className="colorlinks">Recover an Account</p>
+            </div>
+            <div className="col">
+              <p className="colorlinks">Login with Google</p>
+            </div>
+          </div>
         </div>
       </div>
+
       {/* ***********stop CODING HERE***********  */}
     </div>
   );

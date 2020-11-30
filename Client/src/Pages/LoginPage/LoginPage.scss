@@ -1,14 +1,10 @@
 .login-page {
   .containerlogin {
     border-radius: 10px;
-    border: 1.5px solid #2e2e2e;
+    border: 1.5px solid #c4c4c4;
     padding: 25px;
-    margin-bottom: 70px;
-    // margin-top: 10px;
-    margin-left: 35%;
-    width: 450px;
-    height: 480px;
-    box-shadow: 5px 10px 10px 1px #cfcfcf;
+    max-width: 600px;
+    box-shadow: 3px 3px 3px 1px #cfcfcf;
   }
 
   .margin3 {
@@ -31,15 +27,16 @@
     clear: left;
   }
 
-  .row {
-    width: 750px;
-    margin-left: 376px;
-    margin-bottom: 60px;
-  }
+  // .row {
+  //   width: 750px;
+  //   margin-left: 376px;
+  //   margin-bottom: 60px;
+  // }
 
   .colorlinks {
     font-size: 16px;
-    background-color: #ffffff;
+    // background-color: #ffffff;
     font-weight: normal;
+    color: #609dfa;
   }
 }

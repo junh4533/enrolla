@@ -1,14 +1,10 @@
 .login-page {
   .containerlogin {
-    border-radius: 30px;
-    border: 2px solid #2e2e2e;
+    border-radius: 10px;
+    border: 1.5px solid #c4c4c4;
     padding: 25px;
-    margin-bottom: 60px;
-    margin-top: 100px;
-    margin-left: 35%;
-    width: 450px;
-    height: 480px;
-    box-shadow: 5px 10px 10px 1px #cfcfcf;
+    max-width: 600px;
+    box-shadow: 3px 3px 3px 1px #cfcfcf;
   }
 
   .margin3 {
@@ -18,28 +14,29 @@
 
   .rectangle {
     height: 3px;
-    width: 65px;
+    width: 55px;
     background-color: #609dfa;
     border-radius: 75px;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
 
   .extras {
     float: left;
-    width: 200px;
+    width: 250px;
     clear: left;
   }
 
-  .row {
-    width: 600px;
-    margin-left: 450px;
-    margin-bottom: 60px;
-  }
+  // .row {
+  //   width: 750px;
+  //   margin-left: 376px;
+  //   margin-bottom: 60px;
+  // }
 
   .colorlinks {
     font-size: 16px;
-    background-color: #ffffff;
+    // background-color: #ffffff;
     font-weight: normal;
+    color: #609dfa;
   }
 }

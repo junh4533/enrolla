@@ -4,23 +4,23 @@ import "./LandingPage.scss";
 
 const LandingPage = () => {
   return (
-    <div className="landing-page">
+    <div className="landing-page main-content">
       {/* ***********START CODING HERE***********  */}
-      <div className="container-fluid bgpurple text-center">
+      <div className="bgholder bgpurple text-center" id="description">
         <h1 className="margin1">
           Worry less about planning for school with Enrolla.
         </h1>
-        <h4>
+        <h5>
           Enrolla will automatically generate a class schedule for you, based on
           your personal time constraints, subject preferences, and graduation
           requirements.
-        </h4>
-        <a href="#" className="button">
+        </h5>
+        <a href="/register" className="button">
           Sign Up Now
         </a>
       </div>
 
-      <div className="container-fluid bgwhite text-center">
+      <div className="bgholder bgwhite text-center" id="benefits">
         <h3 className="margin2 lavendar">Benefits</h3>
         <div className="rectangle margin2"></div>
         <p>🗸 Keeps you on track for graduation</p>

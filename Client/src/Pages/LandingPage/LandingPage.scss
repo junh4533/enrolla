@@ -3,32 +3,37 @@
 
   .button {
     border: none;
-    color: #ffffff;
-    padding: 15px 30px;
-    text-align: center;
-    display: inline-block;
     font-size: 20px;
-    margin: 30px 5px;
-    cursor: pointer;
     background-color: #609dfa;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 30px;
+    margin-top: 30px;
     border-radius: 50px;
+    cursor: pointer;
+    width: 20%;
+    margin: 1rem auto;
   }
 
   .rectangle {
     height: 3px;
-    width: 85px;
+    width: 55px;
     background-color: #609dfa;
     border-radius: 75px;
     margin: 0 auto;
   }
 
   body {
-    font: 20px Didot, serif;
+    font-family: Didot, serif;
+    font-size: 20px;
     line-height: 2;
     color: #f5f6f7;
   }
 
-  p {font-size: 16px;}
+  p {
+    font-size: 16px;
+  }
 
   .margin1 {
     margin-bottom: 40px;
@@ -46,7 +51,7 @@
   }
 
   .bgpurple {
-    background-color: #6c0075;
+    background-color: #84208d;
     color: #ffffff;
   }
 
@@ -55,15 +60,30 @@
     color: #474e5d;
   }
 
-  .container-fluid {
-    padding-top: 100px;
-    padding-bottom: 75px;
+  .bgholder {
+    // padding-top: 100px;
     padding-left: 200px;
     padding-right: 200px;
+    // padding-bottom: 75px;
   }
 
-  .checkmark{
-    color: #609DFA; font-size: 40px;
+  #description {
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #benefits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35vh;
+  }
+
+  .checkmark {
+    color: #609dfa;
+    font-size: 40px;
   }
 
   /* ***********stop CODING HERE***********  */

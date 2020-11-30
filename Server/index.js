@@ -100,6 +100,7 @@ app.get("/api/query/course-list", (req, res) => {
 app.post("/api/query/student-info", (req, res) => {
   const major = req.body.major,
     minor = req.body.minor,
+    credits = req.body.credits,
     coursesTaken = req.body.coursesTaken.map((d) => `"${d}"`).join(","),
     username = req.body.username,
     studentInfoQuery =
@@ -111,6 +112,9 @@ app.post("/api/query/student-info", (req, res) => {
       "]')",
     studentTranscriptQuery =
       "UPDATE student SET transcript_Transcript_ID = (SELECT MAX(Transcript_ID) FROM transcript) WHERE credentials_Credentials_ID = " +
+      credentials,
+    creditsQuery =
+      "UPDATE student SET current_Credits = ?, `student availability_Student_Availability_ID` = (SELECT MAX(Student_Availability_ID) FROM `student availability`) WHERE credentials_Credentials_ID = " +
       credentials;
 
   const updateStudentInfo = runQuery(
@@ -121,15 +125,21 @@ app.post("/api/query/student-info", (req, res) => {
       username
     ),
     updateTranscript = runQuery(res, transcriptQuery, coursesTaken),
-    updateStudentTranscript = runQuery(res, studentTranscriptQuery, username);
-  Promise.all([updateStudentInfo, updateTranscript, updateStudentTranscript]);
+    updateStudentTranscript = runQuery(res, studentTranscriptQuery, username),
+    updateCredits = runQuery(res, creditsQuery, credits, username);
+  Promise.all([
+    updateStudentInfo,
+    updateTranscript,
+    updateStudentTranscript,
+    updateCredits,
+  ]);
   res.send("Query Complete");
 });
 
 // Query for student preferences
 app.post("/api/query/preferences", (req, res) => {
-  const credits = req.body.credits,
-    coursesToTake = req.body.coursesToTake,
+  // const credits = req.body.credits,
+  const coursesToTake = req.body.coursesToTake,
     monday = req.body.monday,
     tuesday = req.body.tuesday,
     wednesday = req.body.wednesday,
@@ -158,16 +168,16 @@ app.post("/api/query/preferences", (req, res) => {
       "UPDATE student SET course_Preference = '" +
       JSON.stringify(coursesToTake) +
       "' WHERE credentials_Credentials_ID = " +
-      credentials,
-    creditsQuery =
-      "UPDATE student SET current_Credits = ?, `student availability_Student_Availability_ID` = (SELECT MAX(Student_Availability_ID) FROM `student availability`) WHERE credentials_Credentials_ID = " +
       credentials;
+  // creditsQuery =
+  //   "UPDATE student SET current_Credits = ?, `student availability_Student_Availability_ID` = (SELECT MAX(Student_Availability_ID) FROM `student availability`) WHERE credentials_Credentials_ID = " +
+  //   credentials;
 
   const updateAvailability = runQuery(res, availabilityQuery),
-    updateCoursePreference = runQuery(res, coursesQuery, username),
-    updateCredits = runQuery(res, creditsQuery, credits, username);
+    updateCoursePreference = runQuery(res, coursesQuery, username);
+  // updateCredits = runQuery(res, creditsQuery, credits, username);
 
-  Promise.all([updateAvailability, updateCoursePreference, updateCredits]);
+  Promise.all([updateAvailability, updateCoursePreference]);
   res.send("Query Complete");
 });
 

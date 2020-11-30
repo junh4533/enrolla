@@ -10,13 +10,15 @@ import {
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer d-flex justify-content-center align-items-center">
       {/* ***********START CODING HERE***********  */}
-      <FontAwesomeIcon className="social-icon" icon={faFacebookSquare} />
-      <FontAwesomeIcon className="social-icon" icon={faInstagram} />
-      <FontAwesomeIcon className="social-icon" icon={faLinkedinIn} />
-      <FontAwesomeIcon className="social-icon" icon={faTwitter} />
-      <div>Copyright © Enrolla 2020</div>
+      <div>
+        <FontAwesomeIcon className="social-icon" icon={faFacebookSquare} />
+        <FontAwesomeIcon className="social-icon" icon={faInstagram} />
+        <FontAwesomeIcon className="social-icon" icon={faLinkedinIn} />
+        <FontAwesomeIcon className="social-icon" icon={faTwitter} />
+        <div>Copyright © Enrolla 2020</div>
+      </div>
 
       {/* ***********stop CODING HERE***********  */}
     </div>

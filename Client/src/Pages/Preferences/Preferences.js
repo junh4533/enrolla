@@ -2,10 +2,10 @@ import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
 import Cookies from "js-cookie";
 import "./Preferences.scss";
+
 const Preferences = () => {
   const [courseList, setCourseList] = useState([]);
   const [coursesToTake, setCoursesToTake] = useState([]);
-  const [credits, setCredits] = useState("");
   const [monday, setMonday] = useState({});
   const [tuesday, setTuesday] = useState({});
   const [wednesday, setWednesday] = useState({});
@@ -25,41 +25,10 @@ const Preferences = () => {
         console.log(error);
       });
   }, []);
-  const handleCheckbox = (element) => {
-    element.onchange = function () {
-      if (element.checked) {
-        element.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = false;
-        element.nextElementSibling.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = false;
-        element.nextElementSibling.nextElementSibling.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = false;
-        element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = false;
-      } else {
-        element.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = true;
-        element.nextElementSibling.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = true;
-        element.nextElementSibling.nextElementSibling.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = true;
-        element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.getElementsByTagName(
-          "input"
-        )[0].disabled = true;
-      }
-    };
-  };
 
-  const PreferencesQuery = () => {
+  const PreferencesQuery = (e) => {
+    e.preventDefault();
     Axios.post("http://localhost:3001/api/query/preferences", {
-      credits: credits,
       coursesToTake: coursesToTake,
       monday: monday,
       tuesday: tuesday,
@@ -78,17 +47,63 @@ const Preferences = () => {
       });
   };
 
+  const TimeslotField = (props) => {
+    return (
+      <div className="col">
+        <h5>{props.day}</h5>
+        <div className="form-group mt-4">
+          <label>From:</label>
+          <input
+            className="form-control"
+            type="time"
+            onBlur={props.setStart}
+            defaultValue={props.state.start}
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label>To:</label>
+          <input
+            className="form-control"
+            type="time"
+            onBlur={props.setEnd}
+            defaultValue={props.state.end}
+          />
+        </div>
+        <b>Exclude</b>
+        <div className="form-group">
+          <label>From:</label>
+          <input
+            className="form-control"
+            type="time"
+            onBlur={props.setExcludingStart}
+            defaultValue={props.state.excludingStart}
+          />
+        </div>
+        <div className="form-group">
+          <label>To:</label>
+          <input
+            className="form-control"
+            type="time"
+            onBlur={props.setExcludingEnd}
+            defaultValue={props.state.excludingEnd}
+          />
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="preferences-page">
+    <div className="preferences-page main-content">
       {/* ***********START CODING HERE***********  */}
       <h1 className="margin4h1 text-center">Your Schedule Preferences</h1>
-      <h5 className="margin4h5 text-center">Plug in your answers in the fields below so we can generate a custom schedule for you.</h5>
+      <h5 className="margin4h5 text-center">
+        Tell us your schedule so we can find classes for you.
+      </h5>
       <div className="rectangle"></div>
-      <div className="container containerpref">
-        <div className="form-group">
-          <div className="input-group mb-3">
-            <label className="d-block">Courses You Would Like to Take:</label>
-            <br />
+      <div className="container-fluid p-5">
+        <form onSubmit={PreferencesQuery}>
+          <div className="form-group">
+            <label>Courses You Would Like to Take:</label>
             <select
               className="custom-select"
               id="courses"
@@ -101,6 +116,7 @@ const Preferences = () => {
                 setCoursesToTake(values);
                 console.log(values);
               }}
+              required
             >
               {courseList.map((val) => {
                 return (
@@ -109,94 +125,217 @@ const Preferences = () => {
               })}
             </select>
           </div>
-        </div>
-        <div className="form-group">
-          <label>How many credits do you have?</label>
-          <input
-            type="number"
-            className="form-control"
-            name="credits"
-            onChange={(e) => {
-              setCredits(e.target.value);
-            }}
-          />
-        </div>
-        <div className="form-check">
-          <label className="form-check-label">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              onChange={(e) => {
-                handleCheckbox(e.target);
-              }}
-            />
-            Mondays
-            <div className="form-group">
-              <label>From:</label>
-              <input
-                type="time"
-                name="monday-start"
-                onBlur={(e) => {
+          <div className="container-fluid">
+            <div className="row">
+              <TimeslotField
+                day="Monday"
+                state={monday}
+                setStart={(e) => {
                   setMonday((prevState) => ({
-                    start: e.target.value,
                     ...prevState,
+                    start: e.target.value,
                   }));
                 }}
-                disabled
-              />
-            </div>
-            <div className="form-group">
-              <label>To:</label>
-              <input
-                type="time"
-                name="monday-end"
-                onBlur={(e) => {
+                setEnd={(e) => {
                   setMonday((prevState) => ({
                     ...prevState,
                     end: e.target.value,
                   }));
                 }}
-                disabled
-              />
-            </div>
-            Excluding
-            <div className="form-group">
-              <label>From:</label>
-              <input
-                type="time"
-                name="monday-start"
-                onBlur={(e) => {
+                setExcludingStart={(e) => {
                   setMonday((prevState) => ({
-                    excludingStart: e.target.value,
                     ...prevState,
+                    excludingStart: e.target.value,
                   }));
                 }}
-                disabled
-              />
-            </div>
-            <div className="form-group">
-              <label>To:</label>
-              <input
-                type="time"
-                name="monday-end"
-                onBlur={(e) => {
+                setExcludingEnd={(e) => {
                   setMonday((prevState) => ({
                     ...prevState,
                     excludingEnd: e.target.value,
                   }));
                 }}
-                disabled
+              />
+
+              <TimeslotField
+                day="Tuesday"
+                state={tuesday}
+                setStart={(e) => {
+                  setTuesday((prevState) => ({
+                    ...prevState,
+                    start: e.target.value,
+                  }));
+                }}
+                setEnd={(e) => {
+                  setTuesday((prevState) => ({
+                    ...prevState,
+                    end: e.target.value,
+                  }));
+                }}
+                setExcludingStart={(e) => {
+                  setTuesday((prevState) => ({
+                    ...prevState,
+                    excludingStart: e.target.value,
+                  }));
+                }}
+                setExcludingEnd={(e) => {
+                  setTuesday((prevState) => ({
+                    ...prevState,
+                    excludingEnd: e.target.value,
+                  }));
+                }}
+              />
+
+              <TimeslotField
+                day="Wednesday"
+                state={wednesday}
+                setStart={(e) => {
+                  setWednesday((prevState) => ({
+                    ...prevState,
+                    start: e.target.value,
+                  }));
+                }}
+                setEnd={(e) => {
+                  setWednesday((prevState) => ({
+                    ...prevState,
+                    end: e.target.value,
+                  }));
+                }}
+                setExcludingStart={(e) => {
+                  setWednesday((prevState) => ({
+                    ...prevState,
+                    excludingStart: e.target.value,
+                  }));
+                }}
+                setExcludingEnd={(e) => {
+                  setWednesday((prevState) => ({
+                    ...prevState,
+                    excludingEnd: e.target.value,
+                  }));
+                }}
+              />
+
+              <TimeslotField
+                day="Thursday"
+                state={thursday}
+                setStart={(e) => {
+                  setThursday((prevState) => ({
+                    ...prevState,
+                    start: e.target.value,
+                  }));
+                }}
+                setEnd={(e) => {
+                  setThursday((prevState) => ({
+                    ...prevState,
+                    end: e.target.value,
+                  }));
+                }}
+                setExcludingStart={(e) => {
+                  setThursday((prevState) => ({
+                    ...prevState,
+                    excludingStart: e.target.value,
+                  }));
+                }}
+                setExcludingEnd={(e) => {
+                  setThursday((prevState) => ({
+                    ...prevState,
+                    excludingEnd: e.target.value,
+                  }));
+                }}
+              />
+
+              <TimeslotField
+                day="Friday"
+                state={friday}
+                setStart={(e) => {
+                  setFriday((prevState) => ({
+                    ...prevState,
+                    start: e.target.value,
+                  }));
+                }}
+                setEnd={(e) => {
+                  setFriday((prevState) => ({
+                    ...prevState,
+                    end: e.target.value,
+                  }));
+                }}
+                setExcludingStart={(e) => {
+                  setFriday((prevState) => ({
+                    ...prevState,
+                    excludingStart: e.target.value,
+                  }));
+                }}
+                setExcludingEnd={(e) => {
+                  setFriday((prevState) => ({
+                    ...prevState,
+                    excludingEnd: e.target.value,
+                  }));
+                }}
+              />
+
+              <TimeslotField
+                day="Saturday"
+                state={saturday}
+                setStart={(e) => {
+                  setSaturday((prevState) => ({
+                    ...prevState,
+                    start: e.target.value,
+                  }));
+                }}
+                setEnd={(e) => {
+                  setSaturday((prevState) => ({
+                    ...prevState,
+                    end: e.target.value,
+                  }));
+                }}
+                setExcludingStart={(e) => {
+                  setSaturday((prevState) => ({
+                    ...prevState,
+                    excludingStart: e.target.value,
+                  }));
+                }}
+                setExcludingEnd={(e) => {
+                  setSaturday((prevState) => ({
+                    ...prevState,
+                    excludingEnd: e.target.value,
+                  }));
+                }}
+              />
+
+              <TimeslotField
+                day="Sunday"
+                state={sunday}
+                setStart={(e) => {
+                  setSunday((prevState) => ({
+                    ...prevState,
+                    start: e.target.value,
+                  }));
+                }}
+                setEnd={(e) => {
+                  setSunday((prevState) => ({
+                    ...prevState,
+                    end: e.target.value,
+                  }));
+                }}
+                setExcludingStart={(e) => {
+                  setSunday((prevState) => ({
+                    ...prevState,
+                    excludingStart: e.target.value,
+                  }));
+                }}
+                setExcludingEnd={(e) => {
+                  setSunday((prevState) => ({
+                    ...prevState,
+                    excludingEnd: e.target.value,
+                  }));
+                }}
               />
             </div>
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={PreferencesQuery}
-        >
-          Submit
-        </button>
+          </div>
+
+          <button type="submit" className="btn main-button">
+            Next
+          </button>
+        </form>
       </div>
       {/* ***********stop CODING HERE***********  */}
     </div>

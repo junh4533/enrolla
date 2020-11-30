@@ -8,7 +8,7 @@
     margin-top: 50px;
     margin-left: 14%;
     width: 1200px;
-    height: 1000px;
+    height: 1400px;
   }
 
   .rectangle {
@@ -24,6 +24,7 @@
   .margin4h1 {
     margin-top: 50px;
     margin-bottom: 20px;
+    font-size: 42px;
   }
 
   .margin4h5 {
@@ -32,7 +33,48 @@
     font-weight: lighter;
   }
 
-  
+  .coursestext{
+    font-size: 22px;
+    background-color: #ffffff;
+    margin-right: 1%;
+  }
+
+  .creditstext{
+    font-size: 22px;
+    background-color: #ffffff;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+
+  .daystext{
+    font-size: 19px;
+    background-color: #ffffff;
+  }
+
+  .h5daystext{
+    font-size: 22px;
+    background-color: #ffffff;
+    margin-bottom: 25px;
+    margin-top: 40px;
+  }
+
+  .prefbutton { /* effects ALL attributes IF this is named 'btn' on all pages */
+    border: none !important;
+    font-size: 18px !important;
+    background-color: #609dfa !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 120px !important;
+    padding-right: 120px !important;
+    display: inline-block !important;
+    margin-top: 35px !important;
+    margin-left: 36% !important;
+    border-radius: 40px !important;
+    cursor: pointer !important;
+  }
 
   /* ***********stop CODING HERE***********  */
 }

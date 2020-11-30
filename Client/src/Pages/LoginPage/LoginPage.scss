@@ -17,7 +17,7 @@
 
   .rectangle {
     height: 3px;
-    width: 65px;
+    width: 55px;
     background-color: #609dfa;
     border-radius: 75px;
     margin: 0 auto;
@@ -32,7 +32,7 @@
 
   .row {
     width: 750px;
-    margin-left: 376px;
+    margin-left: 25%;
     margin-bottom: 60px;
   }
 
@@ -40,4 +40,21 @@
     font-size: 16px;
     background-color: #ffffff;
     font-weight: normal;
+  }
+
+  .loginbutton { /* effects ALL attributes IF this is named 'btn' on all pages */
+    border: none !important;
+    font-size: 18px !important;
+    background-color: #609dfa !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 171px !important;
+    padding-right: 171px !important;
+    display: inline-block !important;
+    margin-top: 25px !important;
+    border-radius: 40px !important;
+    cursor: pointer !important;
   }

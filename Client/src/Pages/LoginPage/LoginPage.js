@@ -56,7 +56,7 @@ const LoginPage = () => {
             }}
           />
         </div>
-        <button type="submit" className="btn btn-primary" onClick={LoginQuery}>
+        <button type="submit" className="btn btn-primary loginbutton" onClick={LoginQuery}>
           Submit
         </button>
         {/* </form> */}

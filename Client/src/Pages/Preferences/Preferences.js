@@ -25,7 +25,7 @@ const Preferences = () => {
       <div className="container containerpref">
         <div className="form-group">
           <div className="input-group mb-3">
-            <label className="d-block">Courses You Would Like to Take:</label>
+            <label className="d-block coursestext">Courses You Would Like to Take: </label>
             <br />
             <select
               className="custom-select"
@@ -49,7 +49,7 @@ const Preferences = () => {
           </div>
         </div>
         <div className="form-group">
-          <label>How many credits do you have?</label>
+          <label className="creditstext">How many credits do you have?</label>
           <input
             type="number"
             className="form-control"
@@ -60,10 +60,11 @@ const Preferences = () => {
             // }}
           />
         </div>
+        <p className="h5daystext">Select the days and input the time when you are free to take the courses you chose: </p>
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Mondays
+            <label className="daystext">Mondays</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -77,7 +78,7 @@ const Preferences = () => {
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Tuesday
+            <label className="daystext">Tuesday</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -91,7 +92,7 @@ const Preferences = () => {
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Wednesday
+            <label className="daystext">Wednesday</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -105,7 +106,7 @@ const Preferences = () => {
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Thursday
+            <label className="daystext">Thursday</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -119,7 +120,7 @@ const Preferences = () => {
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Friday
+            <label className="daystext">Friday</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -133,7 +134,7 @@ const Preferences = () => {
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Saturday
+            <label className="daystext">Saturday</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -147,7 +148,7 @@ const Preferences = () => {
         <div className="form-check">
           <label className="form-check-label">
             <input type="checkbox" className="form-check-input" value="" />
-            Sunday
+            <label className="daystext">Sunday</label>
             <div className="form-group">
               <label for="usr">From:</label>
               <input type="time" name="appt" />
@@ -158,9 +159,11 @@ const Preferences = () => {
             </div>
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <div className="centerbutton">
+        <button type="submit" className="btn btn-primary prefbutton">
           Submit
         </button>
+        </div>
       </div>
       {/* ***********stop CODING HERE***********  */}
     </div>

@@ -33,7 +33,7 @@ const RegisterPage = () => {
       {/* ***********START CODING HERE***********  */}
       <h1 className="margin4h1 text-center">Register</h1>
       <h5 className="margin4h5 text-center">
-        Tell us your schedule so we can find classes for you.
+        Sign up for an account to get started!
       </h5>
       <div className="rectangle"></div>
       <div className="container">
@@ -117,7 +117,7 @@ const RegisterPage = () => {
             />
           </div>
           <button type="submit" className="btn main-button">
-            Login
+            Register
           </button>
         </form>
       </div>

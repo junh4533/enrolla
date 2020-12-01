@@ -1,6 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
 // import Axios from "axios";
 import "./LandingPage.scss";
+import leftCircles from "../../assets/images/left-circles.png";
+import rightCircles from "../../assets/images/right-circles.png";
+import logoIcon from "../../assets/images/logo-icon.png";
 
 const LandingPage = () => {
   return (
@@ -15,12 +18,25 @@ const LandingPage = () => {
           your personal time constraints, subject preferences, and graduation
           requirements.
         </h5>
-        <a href="/register" className="button">
-          Sign Up Now
+        <a href="/register" className="btn button mt-5">
+          Get Started
         </a>
       </div>
 
-      <div className="bgholder bgwhite text-center" id="benefits">
+      <div className="bgwhite text-center" id="benefits">
+        <img
+          className="circles"
+          id="left-circles"
+          src={leftCircles}
+          alt="left circles"
+        />
+        <img
+          className="circles"
+          id="right-circles"
+          src={rightCircles}
+          alt="right circles"
+        />
+        <img src={logoIcon} id="logo-icon" alt="logo icon" />
         <h3 className="margin2 lavendar">Benefits</h3>
         <div className="rectangle margin2"></div>
         <p>🗸 Keeps you on track for graduation</p>

@@ -10,6 +10,10 @@
     height: 3rem;
     width: 100%;
     margin-top: 1rem;
+
+    &:hover {
+      filter: brightness(105%);
+    }
   }
 
   /* ***********stop CODING HERE***********  */

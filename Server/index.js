@@ -165,7 +165,7 @@ app.post("/api/query/preferences", (req, res) => {
       JSON.stringify(sunday) +
       "')",
     coursesQuery =
-      "UPDATE student SET course_Preference = '" +
+      "UPDATE student SET `student availability_Student_Availability_ID` = (SELECT MAX(Student_Availability_ID) FROM `student availability`), course_Preference = '" +
       JSON.stringify(coursesToTake) +
       "' WHERE credentials_Credentials_ID = " +
       credentials;

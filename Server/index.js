@@ -202,7 +202,7 @@ app.get("/api/query/profile", (req, res) => {
 app.get("/api/query/all-sections", (req, res) => {
   const username = req.query.username;
   const coursesQuery =
-    "SELECT courses.Course_Name, courses.Required_majors, courses.Core_Req, `classes sections`.Classes_Section,`classes sections`.Class_Day,`classes sections`.Class_Start_Time,`classes sections`.Class_End_Time FROM `classes sections` INNER JOIN courses ON `classes sections`.courses_Course_ID=courses.Course_Number";
+    "SELECT courses.Course_Name, courses.Required_majors, courses.Course_Number, courses.Core_Req, `classes sections`.Classes_Section,`classes sections`.Class_Day,`classes sections`.Class_Start_Time,`classes sections`.Class_End_Time FROM `classes sections` INNER JOIN courses ON `classes sections`.courses_Course_ID=courses.Course_Number";
 
   const sql = db.query(coursesQuery, [username], (err, result) => {
     if (result) {

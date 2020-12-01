@@ -195,6 +195,7 @@ const ProfilePage = () => {
                         <li className="list-group-item">
                           <h4>{course.Course_Name}</h4>
                           <p>Section: {course.Classes_Section}</p>
+                          <p>Course Number: {course.Course_Number}</p>
                           <p>
                             <FontAwesomeIcon icon={faCalendar} />{" "}
                             {course.Class_Day.map((day, index) => {

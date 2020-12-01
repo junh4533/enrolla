@@ -1,0 +1,11 @@
+.nav-item.btn-green {
+  border: solid 2px #83c770;
+  font-weight: 500;
+  border-radius: 50px;
+  width: 100px;
+
+  &:hover {
+    background: #83c770;
+    color: black;
+  }
+}

@@ -104,6 +104,7 @@ const ProfilePage = () => {
       filteredCourses = filteredCourses.filter((course) => {
         return days.some((day) => {
           if (_.values(course.Class_Day).includes(day)) {
+            console.log(day);
             return true;
           }
         });
@@ -203,31 +204,29 @@ const ProfilePage = () => {
                                 </span>
                               );
                             })}
-                            {/* {} &{" "}
-                            {daysOfWeek[course.Class_Day[1] - 1]} */}
                           </p>
                           <p>
                             <FontAwesomeIcon icon={faClock} />{" "}
                             {moment(course.Class_Start_Time, "HH:mm:ss").format(
-                              "h:mm:ss A"
+                              "h:mm A"
                             )}{" "}
                             -{" "}
                             {moment(course.Class_End_Time, "HH:mm:ss").format(
-                              "h:mm:ss A"
+                              "h:mm A"
                             )}
                           </p>
                           <b>
                             {course.Core_Req ? (
                               <p>
-                                <span className="text-success">REQUIRED </span>
-                                for your major
+                                <span className="text-success">
+                                  MAJOR REQUIRMENT
+                                </span>
                               </p>
                             ) : (
                               <p>
                                 <span className="text-secondary">
-                                  NOT REQUIRED{" "}
+                                  Flexible Core Requirement
                                 </span>
-                                for your major
                               </p>
                             )}
                           </b>

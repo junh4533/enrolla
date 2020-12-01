@@ -4,11 +4,11 @@
     border: 1.5px solid #c4c4c4;
     padding: 25px;
     max-width: 600px;
-    box-shadow: 3px 3px 3px 1px #cfcfcf;
+    box-shadow: 3px 3px 10px 1px #cfcfcf;
   }
 
   .margin3 {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 25px;
   }
 
@@ -38,5 +38,10 @@
     // background-color: #ffffff;
     font-weight: normal;
     color: #609dfa;
+  }
+
+  #logo-icon {
+    width: 80px;
+    margin: 0 auto;
   }
 }

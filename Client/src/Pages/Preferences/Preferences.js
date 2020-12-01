@@ -41,6 +41,7 @@ const Preferences = () => {
     })
       .then((response) => {
         console.log(response.data);
+        window.location = "/profile";
       })
       .catch((error) => {
         console.log(error);

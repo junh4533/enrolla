@@ -2,11 +2,12 @@ import React, { Component, useState, useEffect } from "react";
 import Axios from "axios";
 import Cookies from "js-cookie";
 import "./LoginPage.scss";
+import logoIcon from "../../assets/images/logo-icon.png";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [authenticated, setAuthenticated] = useState("");
+  const [authenticated, setAuthenticated] = useState("not logged in");
 
   const LoginQuery = (e) => {
     e.preventDefault();
@@ -33,7 +34,8 @@ const LoginPage = () => {
     <div className="login-page main-content d-flex flex-column justify-content-center">
       {/* ***********START CODING HERE***********  */}
 
-      <div className="container containerlogin ">
+      <div className="container containerlogin d-flex flex-column">
+        <img src={logoIcon} id="logo-icon" alt="logo icon" />
         <h1 className="margin3 text-center">Login</h1>
         <div className="rectangle"></div>
         <form onSubmit={LoginQuery}>
@@ -70,7 +72,7 @@ const LoginPage = () => {
             Incorrect Username or Password
           </p>
         )}
-        <div className="container-fluid">
+        <div className="container-fluid mt-3">
           <div className="row text-center">
             <div className="col">
               <p className="colorlinks" href="#">

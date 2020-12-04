@@ -22,7 +22,7 @@ const RegisterPage = () => {
     })
       .then((response) => {
         console.log(response.data);
-        window.location = "/login";
+        window.location = "/ad";
       })
       .catch((error) => {
         console.log(error);

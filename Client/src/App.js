@@ -20,11 +20,12 @@ function App() {
         <Navbar />
         <Route path="/" exact component={LandingPage} />
         <Route path="/register" component={RegisterPage} />
+        <Route path="/ad" component={AdPage} />
         <Route path="/login" component={LoginPage} />
         <ProtectedRoute path="/student-info" component={StudentInfo} />
         <ProtectedRoute path="/preferences" component={Preferences} />
         <ProtectedRoute path="/profile" component={ProfilePage} />
-        <ProtectedRoute path="/ad" component={AdPage} />
+        {/* <ProtectedRoute path="/ad" component={AdPage} /> */}
         <Footer />
       </div>
     </Router>

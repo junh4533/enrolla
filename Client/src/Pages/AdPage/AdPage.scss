@@ -1,2 +1,51 @@
 .ad-page {
+  position: relative;
+  height: 80vh;
+  .plan-card {
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding: 50px 30px;
+    .monthly {
+      font-size: 50%;
+    }
+
+    hr.blue {
+      background: #35b9e2;
+      height: 0.2rem;
+    }
+
+    h1.blue {
+      color: #35b9e2;
+    }
+
+    hr.red {
+      background: #ff2525;
+      height: 0.2rem;
+    }
+
+    h1.red {
+      color: #ff2525;
+    }
+  }
+  .main-button.blue {
+    background: #35b9e2 !important;
+  }
+
+  .main-button.red {
+    background: #ff2525 !important;
+  }
+
+  .circles {
+    position: absolute;
+  }
+
+  #right-circles {
+    right: 0;
+    top: 0;
+  }
+
+  #left-circles {
+    left: 0;
+    bottom: 0;
+  }
 }
